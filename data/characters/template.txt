@@ -3,7 +3,6 @@ package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
 require "CHARACTER"
 
 local function balanceCHARACTERstats(inst)
-
 	local characterstats =	{
 								health = 75,
 								levelingfood = {monsterlasagna = 1},
@@ -12,7 +11,6 @@ local function balanceCHARACTERstats(inst)
 	ModifyCharacter:ModifyStats(inst, characterstats)
 	OR
 	ModifyCharacter:ModifyStatsWithLeveling(inst, characterstats)
-
 end
 
 if not ignoreMCR then
