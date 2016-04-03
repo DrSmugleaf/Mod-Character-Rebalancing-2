@@ -1,0 +1,20 @@
+use "data/scripts/init"
+package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
+require "CHARACTER"
+
+local function balanceCHARACTERStats(inst)
+
+	local characterStats =	{
+								health = 75
+							}
+
+	ModifyCharacter:ModifyStats(inst, characterStats)
+
+end
+
+if not ignoreMCR then
+	AddPrefabPostInit("CHARACTER", balanceCHARACTERStats)
+	LogHelper:PrintInfo("Balancing CHARACTER")
+else
+	LogHelper:PrintInfo("Balancing CHARACTER disabled by author")
+end

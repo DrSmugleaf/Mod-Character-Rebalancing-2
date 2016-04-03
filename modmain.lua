@@ -1,5 +1,5 @@
 MOD_NAME = "Mod Character Rebalancing 2"
-MOD_PREFIX = "MCR"
+MOD_PREFIX = "MCR2"
 MOD_ID = ""
 MOD_VERSION = "1.0.0"
 
@@ -10,16 +10,19 @@ modimport("libs/env.lua")
 -- Actions Initialization.
 use "data/actions/init"
 
+-- Character Initialization.
+use "data/characters/init"
+
 -- Component Initialization.
 use "data/components/init"
 
 -- Screens Initialization.
 use "data/screens/init"
 
+-- Scripts Initialization.
+use "data/scripts/init"
+
 -- Widgets Initialization.
 use "data/widgets/controls"
 
-
-
-
-
+LogHelper:PrintInfo("Running Mod Character Rebalancing 2: Version " .. MOD_VERSION)
