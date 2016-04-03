@@ -7,6 +7,9 @@ MOD_VERSION = "1.0.0"
 -- Allows use to call global environment variables without initializing them in our files.
 modimport("libs/env.lua")
 
+-- Scripts Initialization.
+use "data/scripts/init"
+
 -- Actions Initialization.
 use "data/actions/init"
 
@@ -19,10 +22,5 @@ use "data/components/init"
 -- Screens Initialization.
 use "data/screens/init"
 
--- Scripts Initialization.
-use "data/scripts/init"
-
 -- Widgets Initialization.
 use "data/widgets/controls"
-
-LogHelper:PrintInfo("Running Mod Character Rebalancing 2: Version " .. MOD_VERSION)
