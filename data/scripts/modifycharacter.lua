@@ -9,8 +9,8 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	
 	inst.components.combat.damagemultiplier = stats.damage or inst.components.combat.damagemultiplier
 	
-	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation
-	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.summerinsulation
+	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation or 0
+	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.summerinsulation or 0
 	
 	inst.components.locomotor.walkspeed = stats.walkspeed and TUNING.WILSON_WALK_SPEED * stats.walkspeed or inst.components.locomotor.walkspeed
 	inst.components.locomotor.runspeed = stats.runspeed and TUNING.WILSON_RUN_SPEED * stats.runspeed or inst.components.locomotor.runspeed
