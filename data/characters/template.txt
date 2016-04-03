@@ -2,18 +2,21 @@ use "data/scripts/init"
 package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
 require "CHARACTER"
 
-local function balanceCHARACTERStats(inst)
+local function balanceCHARACTERstats(inst)
 
-	local characterStats =	{
-								health = 75
+	local characterstats =	{
+								health = 75,
+								levelingfood = {monsterlasagna = 1},
 							}
 
-	ModifyCharacter:ModifyStats(inst, characterStats)
+	ModifyCharacter:ModifyStats(inst, characterstats)
+	OR
+	ModifyCharacter:ModifyStatsWithLeveling(inst, characterstats)
 
 end
 
 if not ignoreMCR then
-	AddPrefabPostInit("CHARACTER", balanceCHARACTERStats)
+	AddPrefabPostInit("CHARACTER", balanceCHARACTERstats)
 	LogHelper:PrintInfo("Balancing CHARACTER")
 else
 	LogHelper:PrintInfo("Balancing CHARACTER disabled by author")
