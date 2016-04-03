@@ -3,8 +3,8 @@ require "modinfo"
 package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
 require "CHARACTER"
 
-local function balanceCHARACTERstats(inst)
-	local CHARACTERstats =	{
+local function balancestats(inst)
+	local characterstats =	{
 								health = 75,
 								levelingfood = {monsterlasagna = 1}
 							}
@@ -15,8 +15,8 @@ local function balanceCHARACTERstats(inst)
 end
 
 if not ignoreMCR then
-	AddPrefabPostInit("CHARACTER", balanceCHARACTERstats)
-	LogHelper:PrintInfo("Balancing CHARACTER by " .. author .. ": Version " .. version)
+	AddPrefabPostInit("CHARACTER", balancestats)
+	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
 else
-	LogHelper:PrintInfo("Balancing CHARACTER disabled by author")
+	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
 end

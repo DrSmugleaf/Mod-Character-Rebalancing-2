@@ -22,4 +22,6 @@ function LogHelper:PrintWarn(message)
 	print("[" .. (MOD_NAME) .. "] " .. "[WARN] " .. (message))
 end
 
+LogHelper:PrintInfo("Running Mod Character Rebalancing 2 Version: " .. MOD_VERSION)
+
 return LogHelper
