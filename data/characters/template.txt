@@ -6,18 +6,18 @@ require "CHARACTER"
 
 local function balancestats(inst)
 	local characterstats =	{
-								health = MODTUNING.CHARACTER_HEALTH,
-								levelingfood = {MODTUNING.CHARACTER_LEVELING_FOOD_PREFAB_1 = MODTUNING.CHARACTER_LEVEL_PER_FOOD_PREFAB_1}
+								health = MODMODTUNING.CHARACTER_HEALTH,
+								levelingfood = {MODMODTUNING.CHARACTER_LEVELING_FOOD_PREFAB_1 = MODMODTUNING.CHARACTER_LEVEL_PER_FOOD_PREFAB_1}
 							}
-
+	
 	ModifyCharacter:ModifyStats(inst, characterstats)
 	OR
 	ModifyCharacter:ModifyStatsWithLeveling(inst, characterstats)
 end
 
 if not ignoreMCR then
-	if version ~= TUNING.CHARACTER_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. TUNING.CHARACTER_SUPPORTED_VERSION)
+	if version ~= MODTUNING.CHARACTER_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.CHARACTER_SUPPORTED_VERSION)
 	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
 	AddPrefabPostInit("CHARACTER", balancestats)

@@ -78,4 +78,25 @@ function ModifyCharacter:ModifyStatsWithLeveling(inst, stats)
 	inst.OnPreLoad = onpreload
 end
 
+function ModifyCharacter:ChangeStartingInventory(inst, start_inv)
+	if inst.OnNewSpawn then
+		inst.old_OnNewSpawn = inst.OnNewSpawn
+	end
+	
+	inst.OnNewSpawn = function(inst)
+		if old_OnNewSpawn ~= nil then old_OnNewSpawn() end
+		
+		if inst.components.inventory ~= nil then
+			inst.components.inventory.ignoresound = true
+			for i = 1, inst.components.inventory:GetNumSlots() do
+				inst.components.inventory:RemoveItemBySlot(i)
+			end
+			for _, v in ipairs(start_inv) do
+				inst.components.inventory:GiveItem(SpawnPrefab(v))
+			end
+			inst.components.inventory.ignoresound = false
+		end
+	end
+end
+
 return ModifyCharacter
