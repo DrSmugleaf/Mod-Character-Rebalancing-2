@@ -1,6 +1,6 @@
-package.path = package.path .. ";../mods/workshop-376244443/?.lua"		
+package.path = package.path .. ";../mods/workshop-376244443/?.lua"
 require "modinfo"
-package.path = package.path .. ";../mods/workshop-376244443/scripts/prefabs/?.lua"		
+package.path = package.path .. ";../mods/workshop-376244443/scripts/prefabs/?.lua"
 require "saber"
 
 
@@ -23,7 +23,7 @@ local function balancestats(inst)
 end
 
 local function balancesaberkendostick(inst)
-	AddRecipe("kendostick", {Ingredient("log", 2), Ingredient("twigs", 1)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
+	AddRecipe("kendostick", {Ingredient("log", 1), Ingredient("twigs", 2)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 	
 	if not TheWorld.ismastersim then
 		return inst
