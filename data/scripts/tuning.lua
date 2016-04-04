@@ -1,7 +1,7 @@
-TUNING = {}
+MODTUNING = {}
 
 
-function Tune(overrides)
+function ModTune(overrides)
 	if overrides == nil then
 		overrides = {}
 	end
@@ -33,10 +33,22 @@ function Tune(overrides)
 	
 	local perish_warp = 1--/200
 	
-	TUNING =
+	MODTUNING =
 	{
-		
-    }
+		SABER_SUPPORTED_VERSION = "1.2.4",
+		SABER_HEALTH = 200,
+		SABER_HUNGER = 150,
+		SABER_SANITY = 125,
+		SABER_DAMAGE = 1.25,
+		SABER_WALK_SPEED = 1.1,
+		SABER_RUN_SPEED = 1.1,
+		SABER_NEG_AURA_MULT = 1.25,
+		SABER_HUNGER_RATE = 1,
+		SABER_HUNGER_HURT_RATE = 2,
+		SABER_KENDOSTICK_USES = 50,
+		SABER_KENDOSTICK_DAMAGE = 30,
+		SABER_KENDOSTICK_SLIP_CHANCE = 0.1,
+	}
 end
 
-Tune()
+ModTune()

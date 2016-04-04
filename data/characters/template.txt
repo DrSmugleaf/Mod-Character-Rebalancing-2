@@ -6,8 +6,8 @@ require "CHARACTER"
 
 local function balancestats(inst)
 	local characterstats =	{
-								health = 75,
-								levelingfood = {monsterlasagna = 1}
+								health = MODTUNING.CHARACTER_HEALTH,
+								levelingfood = {MODTUNING.CHARACTER_LEVELING_FOOD_PREFAB_1 = MODTUNING.CHARACTER_LEVEL_PER_FOOD_PREFAB_1}
 							}
 
 	ModifyCharacter:ModifyStats(inst, characterstats)
