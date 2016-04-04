@@ -15,8 +15,11 @@ local function balancestats(inst)
 end
 
 if not ignoreMCR then
-	AddPrefabPostInit("CHARACTER", balancestats)
+	if version ~= TUNING.CHARACTER_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. TUNING.CHARACTER_SUPPORTED_VERSION)
+	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	AddPrefabPostInit("CHARACTER", balancestats)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
 end
