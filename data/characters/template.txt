@@ -3,6 +3,7 @@ require "modinfo"
 package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
 require "CHARACTER"
 
+
 local function balancestats(inst)
 	local characterstats =	{
 								health = 75,
