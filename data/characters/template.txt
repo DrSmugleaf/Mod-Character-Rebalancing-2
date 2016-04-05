@@ -8,6 +8,7 @@ local function balancestats(inst)
 	local characterstats =	{
 								health = MODTUNING.CHARACTER_HEALTH,
 								hunger = MODTUNING.CHARACTER_HUNGER,
+								sanity = MODTUNING.CHARACTER_SANITY,
 								damage = MODTUNING.CHARACTER_DAMAGE,
 								walkspeed = MODTUNING.CHARACTER_WALK_SPEED,
 								runspeed = MODTUNING.CHARACTER_RUN_SPEED,
