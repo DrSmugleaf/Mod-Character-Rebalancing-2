@@ -33,8 +33,20 @@ function ModTune(overrides)
 	
 	local perish_warp = 1--/200
 	
+	local craziness_small = -100/(day_time*2)
+	local craziness_med = -100/(day_time)
+	local craziness_medlarge = -100/(day_time/1.5)
+	local craziness_large = -100/(day_time/2)
+	local craziness_huge = -100/(day_time/4)
+	
 	MODTUNING =
 	{
+		CRAZINESS_SMALL = craziness_small,
+		CRAZINESS_MED = craziness_med,
+		CRAZINESS_MEDLARGE = craziness_medlarge,
+		CRAZINESS_LARGE = craziness_large,
+		CRAZINESS_HUGE = craziness_huge,
+		
 		SABER_SUPPORTED_VERSION = "1.2.4",
 		SABER_HEALTH = 200,
 		SABER_HUNGER = 150,
@@ -48,6 +60,18 @@ function ModTune(overrides)
 		SABER_KENDOSTICK_USES = 50,
 		SABER_KENDOSTICK_DAMAGE = 30,
 		SABER_KENDOSTICK_SLIP_CHANCE = 0.1,
+		
+		ABIGAIL_SUPPORTED_VERSION = "1.2.1",
+		ABIGAIL_HUNGER = 100,
+		ABIGAIL_DAMAGE = 1,
+		ABIGAIL_HUNGER_RATE = 1,
+		ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONEQUIP = -5,
+		ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONUNEQUIP = -5,
+		ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONATTACK = -2,
+		ABIGAIL_GALAXYSWORD_USES = TUNING.NIGHTSWORD_USES * 0.75,
+		ABIGAIL_GALAXYSWORD_DAMAGE = 68,
+		ABIGAIL_GALAXYSWORD_DAPPERNESS = craziness_medlarge,
+		ABIGAIL_GALAXYSWORD_SPEED_MULT = TUNING.CANE_SPEED_MULT,
 	}
 end
 
