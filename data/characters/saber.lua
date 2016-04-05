@@ -4,7 +4,7 @@ package.path = package.path .. ";../mods/workshop-376244443/scripts/prefabs/?.lu
 require "saber"
 
 
-local function balancestats(inst)
+local function balancesaber(inst)
 	local characterstats =	{
 								health = MODTUNING.SABER_HEALTH,
 								hunger = MODTUNING.SABER_HUNGER,
@@ -28,7 +28,7 @@ local function balancestats(inst)
 	inst:AddTag("saber")
 end
 
-local function balancesaberkendostick(inst)
+local function balancekendostick(inst)
 	AddRecipe("kendostick", {Ingredient("log", 1), Ingredient("twigs", 2)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 	
 	if not TheWorld.ismastersim then
@@ -59,8 +59,8 @@ if not ignoreMCR then
 		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
 	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
-	AddPrefabPostInit("saber", balancestats)
-	AddPrefabPostInit("kendostick", balancesaberkendostick)
+	AddPrefabPostInit("saber", balancesaber)
+	AddPrefabPostInit("kendostick", balancekendostick)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
 end

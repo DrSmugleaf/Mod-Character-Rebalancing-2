@@ -4,7 +4,7 @@ package.path = package.path .. ";../mods/workshop-647062183/scripts/prefabs/?.lu
 require "sdabigail"
 
 
-local function balancestats(inst)
+local function balanceabigail(inst)
 	local characterstats =	{
 								health = MODTUNING.ABIGAIL_HEALTH,
 								hunger = MODTUNING.ABIGAIL_HUNGER,
@@ -26,7 +26,6 @@ local function balancestats(inst)
 end
 
 local function balancegalaxysword(inst)
-	
 	AllRecipes["galaxysword"].level = TECH.MAGIC_THREE
 	
 	local function OnEquip(inst, owner)
@@ -63,6 +62,8 @@ local function balancegalaxysword(inst)
 		return inst
 	end
 	
+	inst:AddTag("shadow")
+	
 	inst.components.weapon:SetDamage(MODTUNING.ABIGAIL_GALAXYSWORD_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
 	
@@ -88,7 +89,7 @@ if not ignoreMCR then
 		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
 	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
-	AddPrefabPostInit("sdabigail", balancestats)
+	AddPrefabPostInit("sdabigail", balanceabigail)
 	AddPrefabPostInit("galaxysword", balancegalaxysword)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
