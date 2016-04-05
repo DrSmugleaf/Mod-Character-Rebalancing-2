@@ -24,9 +24,9 @@ local function balanceabigail(inst)
 	
 	ModifyCharacter:ModifyStats(inst, characterstats)
 	
-	AllRecipes["sdpan_flute"].ingredients = {Ingredient("cutreeds", 5), Ingredient("nightmarefuel", 4), Ingredient("rope", 1)}
-	AllRecipes["sdpan_flute"].level = TECH.MAGIC_THREE
-	AllRecipes["galaxysword"].level = TECH.MAGIC_THREE
+	AllRecipes["galaxysword"].level = MODTUNING.ABIGAIL_GALAXYSWORD_TECH
+	AllRecipes["sdpan_flute"].ingredients = MODTUNING.ABIGAIL_PANFLUTE_INGREDIENTS
+	AllRecipes["sdpan_flute"].level = MODTUNING.ABIGAIL_PANFLUTE_TECH
 end
 
 local function balancegalaxysword(inst)
@@ -87,12 +87,12 @@ local function balancegalaxysword(inst)
 end
 
 local function balancepanflute(inst)
-	local function onplay(act)
-		if act.invobject and act.invobject.components.instrument then
-			act.doer.components.sanity:DoDelta(-33)
-			return act.invobject.components.instrument:Play(act.doer)
-		end
-	end
+	inst.components.finiteuses:SetMaxUses(MODTUNING.ABIGAIL_PANFLUTE_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.ABIGAIL_PANFLUTE_USES)
+end
+
+local function balancequartz(inst)
+	
 end
 
 if not ignoreMCR then
@@ -103,6 +103,7 @@ if not ignoreMCR then
 	AddPrefabPostInit("sdabigail", balanceabigail)
 	AddPrefabPostInit("galaxysword", balancegalaxysword)
 	AddPrefabPostInit("sdpan_flute", balancepanflute)
+	AddPrefabPostInit("sdquartz", balancequartz)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
 end
