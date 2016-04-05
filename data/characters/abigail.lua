@@ -23,11 +23,13 @@ local function balanceabigail(inst)
 							}
 	
 	ModifyCharacter:ModifyStats(inst, characterstats)
+	
+	AllRecipes["sdpan_flute"].ingredients = {Ingredient("cutreeds", 5), Ingredient("nightmarefuel", 4), Ingredient("rope", 1)}
+	AllRecipes["sdpan_flute"].level = TECH.MAGIC_THREE
+	AllRecipes["galaxysword"].level = TECH.MAGIC_THREE
 end
 
 local function balancegalaxysword(inst)
-	AllRecipes["galaxysword"].level = TECH.MAGIC_THREE
-	
 	local function OnEquip(inst, owner)
 	    owner.AnimState:OverrideSymbol("swap_object", "swap_galaxysword", "swap_galaxysword")
 		owner.AnimState:Show("ARM_carry")
@@ -84,6 +86,15 @@ local function balancegalaxysword(inst)
 	return inst
 end
 
+local function balancepanflute(inst)
+	local function onplay(act)
+		if act.invobject and act.invobject.components.instrument then
+			act.doer.components.sanity:DoDelta(-33)
+			return act.invobject.components.instrument:Play(act.doer)
+		end
+	end
+end
+
 if not ignoreMCR then
 	if version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
 		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
@@ -91,6 +102,7 @@ if not ignoreMCR then
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
 	AddPrefabPostInit("sdabigail", balanceabigail)
 	AddPrefabPostInit("galaxysword", balancegalaxysword)
+	AddPrefabPostInit("sdpan_flute", balancepanflute)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
 end
