@@ -4,6 +4,9 @@ package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
 require "CHARACTER"
 
 
+local function addsimpostinit(inst)
+end
+
 local function balanceCHARACTER(inst)
 	local characterstats =	{
 								health = MODTUNING.CHARACTER_HEALTH,
@@ -34,6 +37,7 @@ if not ignoreMCR then
 		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.CHARACTER_SUPPORTED_VERSION)
 	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("CHARACTER", balanceCHARACTER)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
