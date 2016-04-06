@@ -28,7 +28,10 @@ local function balanceabigail(inst)
 								hungerhurtrate = MODTUNING.ABIGAIL_HUNGER_HURT_RATE,
 							}
 	
+	local start_inv = {"pumpkin_seeds", "pumpkin_seeds", "pumpkin_seeds"}
+	
 	ModifyCharacter:ModifyStats(inst, characterstats)
+	ModifyCharacter:ChangeStartingInventory(inst, start_inv)
 	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
 end
 
