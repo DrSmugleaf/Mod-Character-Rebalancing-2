@@ -11,7 +11,7 @@ local function addsimpostinit(inst)
 end
 
 local function balanceabigail(inst)
-	local characterstats =	{
+	local abigailstats =	{
 								health = MODTUNING.ABIGAIL_HEALTH,
 								hunger = MODTUNING.ABIGAIL_HUNGER,
 								damage = MODTUNING.ABIGAIL_DAMAGE,
@@ -30,7 +30,7 @@ local function balanceabigail(inst)
 	
 	local start_inv = {"pumpkin_seeds", "pumpkin_seeds", "pumpkin_seeds"}
 	
-	ModifyCharacter:ModifyStats(inst, characterstats)
+	ModifyCharacter:ModifyStats(inst, abigailstats)
 	ModifyCharacter:ChangeStartingInventory(inst, start_inv)
 	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
 end

@@ -1,13 +1,13 @@
 package.path = package.path .. ";../mods/workshop-#/?.lua"
 require "modinfo"
 package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
-require "CHARACTER"
+require "character"
 
 
 local function addsimpostinit(inst)
 end
 
-local function balanceCHARACTER(inst)
+local function balancecharacter(inst)
 	local characterstats =	{
 								health = MODTUNING.CHARACTER_HEALTH,
 								hunger = MODTUNING.CHARACTER_HUNGER,
@@ -38,7 +38,7 @@ if not ignoreMCR then
 	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
 	AddSimPostInit(addsimpostinit)
-	AddPrefabPostInit("CHARACTER", balanceCHARACTER)
+	AddPrefabPostInit("character", balancecharacter)
 else
 	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
 end

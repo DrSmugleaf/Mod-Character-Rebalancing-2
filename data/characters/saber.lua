@@ -5,7 +5,7 @@ require "saber"
 
 
 local function balancesaber(inst)
-	local characterstats =	{
+	local saberstats =	{
 								health = MODTUNING.SABER_HEALTH,
 								hunger = MODTUNING.SABER_HUNGER,
 								sanity = MODTUNING.SABER_SANITY,
@@ -23,7 +23,7 @@ local function balancesaber(inst)
 								hungerhurtrate = MODTUNING.SABER_HUNGER_HURT_RATE,
 							}
 	
-	ModifyCharacter:ModifyStats(inst, characterstats)
+	ModifyCharacter:ModifyStats(inst, saberstats)
 	
 	inst:AddTag("saber")
 end
