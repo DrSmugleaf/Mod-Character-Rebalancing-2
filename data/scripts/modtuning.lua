@@ -78,6 +78,9 @@ function ModTune(overrides)
 		ABIGAIL_PANFLUTE_INGREDIENTS = {Ingredient("cutreeds", 5), Ingredient("nightmarefuel", 2), Ingredient("boneshard", 1)},
 		ABIGAIL_PANFLUTE_TECH = TECH.MAGIC_THREE,
 		ABIGAIL_PANFLUTE_USES = 5,
+		ABIGAIL_QUARTZ_HEALTHVALUE = -5,
+		ABIGAIL_QUARTZ_HUNGERVALUE = 5,
+		ABIGAIL_QUARTZ_SANITYVALUE = 5,
 	}
 end
 

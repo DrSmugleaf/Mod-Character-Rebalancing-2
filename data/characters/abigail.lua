@@ -4,6 +4,12 @@ package.path = package.path .. ";../mods/workshop-647062183/scripts/prefabs/?.lu
 require "sdabigail"
 
 
+local function addsimpostinit(inst)
+	AllRecipes["galaxysword"].level = MODTUNING.ABIGAIL_GALAXYSWORD_TECH
+	AllRecipes["sdpan_flute"].ingredients = MODTUNING.ABIGAIL_PANFLUTE_INGREDIENTS
+	AllRecipes["sdpan_flute"].level = MODTUNING.ABIGAIL_PANFLUTE_TECH
+end
+
 local function balanceabigail(inst)
 	local characterstats =	{
 								health = MODTUNING.ABIGAIL_HEALTH,
@@ -23,10 +29,7 @@ local function balanceabigail(inst)
 							}
 	
 	ModifyCharacter:ModifyStats(inst, characterstats)
-	
-	AllRecipes["galaxysword"].level = MODTUNING.ABIGAIL_GALAXYSWORD_TECH
-	AllRecipes["sdpan_flute"].ingredients = MODTUNING.ABIGAIL_PANFLUTE_INGREDIENTS
-	AllRecipes["sdpan_flute"].level = MODTUNING.ABIGAIL_PANFLUTE_TECH
+	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
 end
 
 local function balancegalaxysword(inst)
@@ -92,7 +95,9 @@ local function balancepanflute(inst)
 end
 
 local function balancequartz(inst)
-	
+	inst.components.edible.healthvalue = MODTUNING.ABIGAIL_QUARTZ_HEALTHVALUE
+	inst.components.edible.hungervalue = MODTUNING.ABIGAIL_QUARTZ_HUNGERVALUE
+	inst.components.edible.sanityvalue = MODTUNING.ABIGAIL_QUARTZ_SANITYVALUE
 end
 
 if not ignoreMCR then
@@ -100,6 +105,7 @@ if not ignoreMCR then
 		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
 	end
 	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("sdabigail", balanceabigail)
 	AddPrefabPostInit("galaxysword", balancegalaxysword)
 	AddPrefabPostInit("sdpan_flute", balancepanflute)
