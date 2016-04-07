@@ -87,6 +87,8 @@ function ModTune(overrides)
 		LUFFY_HAT_INGREDIENTS = {Ingredient("cutgrass", 12), Ingredient("rope", 1)},
 		LUFFY_HAT_TECH = TECH.SCIENCE_ONE,
 		LUFFY_HAT_PERISHTIME = total_day_time * 5,
+		
+		TAMAMO_SUPPORTED_VERSION = "1.3.5",
 	}
 end
 
