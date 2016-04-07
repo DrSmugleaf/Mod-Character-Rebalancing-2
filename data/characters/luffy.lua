@@ -5,8 +5,7 @@ require "luffy"
 
 
 local function addsimpostinit(inst)
-	AllRecipes["luffyhat"].ingredients = MODTUNING.LUFFY_HAT_INGREDIENTS
-	AllRecipes["luffyhat"].level = MODTUNING.LUFFY_HAT_TECH
+	AddRecipe("luffyhat", MODTUNING.LUFFY_HAT_INGREDIENTS, RECIPETABS.DRESS, MODTUNING.LUFFY_HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
 end
 
 local function balanceluffy(inst)
@@ -29,6 +28,8 @@ local function balanceluffy(inst)
 							}
 	
 	ModifyCharacter:ModifyStats(inst, luffystats)
+	
+	inst:AddTag("luffy")
 	
 	inst.components.combat:SetDefaultDamage(MODTUNING.LUFFY_DEFAULT_DAMAGE)
 	
