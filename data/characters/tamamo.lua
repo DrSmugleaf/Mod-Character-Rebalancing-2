@@ -28,8 +28,6 @@ local function balancetamamo(inst)
 	
 	ModifyCharacter:ModifyStats(inst, tamamostats)
 	
-	inst:RemoveTag("birdwhisperer")
-	inst:AddTag("scarytoprey")
 	RemoveEvent:RemoveListener(inst, "equip", "tamamo")
 	
 	inst.components.eater.ignorespoilage = false
