@@ -3,6 +3,10 @@ local ModifyCharacter = Class(function(self, inst)
 end)
 
 function ModifyCharacter:ModifyStats(inst, stats)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	inst.components.health:SetMaxHealth(stats.health or inst.components.health.currenthealth)
 	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.current)
 	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.current)
