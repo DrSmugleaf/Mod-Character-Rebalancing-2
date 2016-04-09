@@ -11,6 +11,10 @@ local function addsimpostinit(inst)
 end
 
 local function balanceabigail(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	local abigailstats =	{
 								health = MODTUNING.ABIGAIL_HEALTH,
 								hunger = MODTUNING.ABIGAIL_HUNGER,
@@ -36,6 +40,10 @@ local function balanceabigail(inst)
 end
 
 local function balancegalaxysword(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	local function OnEquip(inst, owner)
 	    owner.AnimState:OverrideSymbol("swap_object", "swap_galaxysword", "swap_galaxysword")
 		owner.AnimState:Show("ARM_carry")
@@ -66,10 +74,6 @@ local function balancegalaxysword(inst)
 		end
 	end
 	
-	if not TheWorld.ismastersim then
-		return inst
-	end
-	
 	inst:AddTag("shadow")
 	
 	inst.components.weapon:SetDamage(MODTUNING.ABIGAIL_GALAXYSWORD_DAMAGE)
@@ -93,11 +97,19 @@ local function balancegalaxysword(inst)
 end
 
 local function balancepanflute(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	inst.components.finiteuses:SetMaxUses(MODTUNING.ABIGAIL_PANFLUTE_USES)
 	inst.components.finiteuses:SetUses(MODTUNING.ABIGAIL_PANFLUTE_USES)
 end
 
 local function balancequartz(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	inst.components.edible.healthvalue = MODTUNING.ABIGAIL_QUARTZ_HEALTHVALUE
 	inst.components.edible.hungervalue = MODTUNING.ABIGAIL_QUARTZ_HUNGERVALUE
 	inst.components.edible.sanityvalue = MODTUNING.ABIGAIL_QUARTZ_SANITYVALUE
