@@ -37,6 +37,19 @@ local function balanceluffy(inst)
 	inst:AddTag("luffy")
 	
 	inst.components.combat:SetDefaultDamage(MODTUNING.LUFFY_DEFAULT_DAMAGE)
+	if not inst.components.inventory:GetActiveItem() then
+		inst.components.combat:SetAreaDamage(MODTUNING.LUFFY_UNARMED_AREA_HIT_RANGE, MODTUNING.LUFFY_UNARMED_AREA_HIT_DAMAGE)
+	end
+	inst:ListenForEvent("equip", function(inst, data)
+		if data.eslot == EQUIPSLOTS.HANDS then
+			inst.components.combat:SetAreaDamage(nil, nil)
+		end
+	end)
+	inst:ListenForEvent("unequip", function(inst, data)
+		if data.eslot == EQUIPSLOTS.HANDS then
+			inst.components.combat:SetAreaDamage(MODTUNING.LUFFY_UNARMED_AREA_HIT_RANGE, MODTUNING.LUFFY_UNARMED_AREA_HIT_DAMAGE)
+		end
+	end)
 	
 	local defaulteater = require("components/eater")
 	function inst.components.eater:Eat(food)
