@@ -1,10 +1,10 @@
-package.path = package.path .. ";../mods/workshop-399799824/?.lua"
-require "modinfo"
-package.path = package.path .. ";../mods/workshop-399799824/scripts/prefabs/?.lua"
-require "tamamo"
+local info = KnownModIndex:LoadModInfo("workshop-399799824")
 
 
 local function addsimpostinit(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
 end
 
 local function balancetamamo(inst)
@@ -58,12 +58,12 @@ local function balancetamamo(inst)
 end
 
 if not ignoreMCR then
-	if version ~= MODTUNING.TAMAMO_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.TAMAMO_SUPPORTED_VERSION)
+	if info.version ~= MODTUNING.TAMAMO_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.TAMAMO_SUPPORTED_VERSION)
 	end
-	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("tamamo", balancetamamo)
 else
-	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end

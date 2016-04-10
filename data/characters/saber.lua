@@ -1,10 +1,12 @@
-package.path = package.path .. ";../mods/workshop-376244443/?.lua"
-require "modinfo"
-package.path = package.path .. ";../mods/workshop-376244443/scripts/prefabs/?.lua"
-require "saber"
+local info = KnownModIndex:LoadModInfo("workshop-376244443")
+
 
 
 local function addsimpostinit(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	AddRecipe("kendostick", {Ingredient("log", 1), Ingredient("twigs", 2)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 end
 
@@ -61,13 +63,13 @@ local function balancekendostick(inst)
 end
 
 if not ignoreMCR then
-	if (version ~= MODTUNING.SABER_SUPPORTED_VERSION) then
-		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
+	if info.version ~= MODTUNING.SABER_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
 	end
-	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("saber", balancesaber)
 	AddPrefabPostInit("kendostick", balancekendostick)
 else
-	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end

@@ -1,13 +1,17 @@
-package.path = package.path .. ";../mods/workshop-#/?.lua"
-require "modinfo"
-package.path = package.path .. ";../mods/workshop-#/scripts/prefabs/?.lua"
-require "character"
+local info = KnownModIndex:LoadModInfo("workshop-#")
 
 
 local function addsimpostinit(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
 end
 
 local function balancecharacter(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	local characterstats =	{
 								health = MODTUNING.CHARACTER_HEALTH,
 								hunger = MODTUNING.CHARACTER_HUNGER,
@@ -33,12 +37,12 @@ local function balancecharacter(inst)
 end
 
 if not ignoreMCR then
-	if version ~= MODTUNING.CHARACTER_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.CHARACTER_SUPPORTED_VERSION)
+	if info.version ~= MODTUNING.CHARACTER_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.CHARACTER_SUPPORTED_VERSION)
 	end
-	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("character", balancecharacter)
 else
-	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end

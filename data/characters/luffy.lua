@@ -1,10 +1,11 @@
-package.path = package.path .. ";../mods/workshop-380079744/?.lua"
-require "modinfo"
-package.path = package.path .. ";../mods/workshop-380079744/scripts/prefabs/?.lua"
-require "luffy"
+local info = KnownModIndex:LoadModInfo("workshop-380079744")
 
 
 local function addsimpostinit(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	AddRecipe("luffyhat", MODTUNING.LUFFY_HAT_INGREDIENTS, RECIPETABS.DRESS, MODTUNING.LUFFY_HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
 end
 
@@ -57,13 +58,13 @@ local function balanceluffyhat(inst)
 end
 
 if not ignoreMCR then
-	if version ~= MODTUNING.LUFFY_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.LUFFY_SUPPORTED_VERSION)
+	if info.version ~= MODTUNING.LUFFY_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.LUFFY_SUPPORTED_VERSION)
 	end
-	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("luffy", balanceluffy)
 	AddPrefabPostInit("luffyhat", balanceluffyhat)
 else
-	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end

@@ -1,10 +1,11 @@
-package.path = package.path .. ";../mods/workshop-647062183/?.lua"
-require "modinfo"
-package.path = package.path .. ";../mods/workshop-647062183/scripts/prefabs/?.lua"
-require "sdabigail"
+local info = KnownModIndex:LoadModInfo("workshop-647062183")
 
 
 local function addsimpostinit(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	AllRecipes["galaxysword"].level = MODTUNING.ABIGAIL_GALAXYSWORD_TECH
 	AllRecipes["sdpan_flute"].ingredients = MODTUNING.ABIGAIL_PANFLUTE_INGREDIENTS
 	AllRecipes["sdpan_flute"].level = MODTUNING.ABIGAIL_PANFLUTE_TECH
@@ -116,15 +117,15 @@ local function balancequartz(inst)
 end
 
 if not ignoreMCR then
-	if version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. name .. " Version: " .. version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
+	if info.version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
+		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
 	end
-	LogHelper:PrintInfo("Balancing " .. name ..  " by " .. author .. " Version: " .. version)
+	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 	AddSimPostInit(addsimpostinit)
 	AddPrefabPostInit("sdabigail", balanceabigail)
 	AddPrefabPostInit("galaxysword", balancegalaxysword)
 	AddPrefabPostInit("sdpan_flute", balancepanflute)
 	AddPrefabPostInit("sdquartz", balancequartz)
 else
-	LogHelper:PrintInfo("Balancing " .. name .. " disabled by " .. author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end
