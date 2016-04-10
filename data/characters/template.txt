@@ -36,7 +36,7 @@ local function balancecharacter(inst)
 	ModifyCharacter:ModifyStatsWithLeveling(inst, characterstats)
 end
 
-if not ignoreMCR then
+if not info.ignoreMCR then
 	if info.version ~= MODTUNING.CHARACTER_SUPPORTED_VERSION then
 		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.CHARACTER_SUPPORTED_VERSION)
 	end

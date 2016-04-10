@@ -1,7 +1,6 @@
 local info = KnownModIndex:LoadModInfo("workshop-376244443")
 
 
-
 local function addsimpostinit(inst)
 	if not TheWorld.ismastersim then
 		return inst
@@ -37,7 +36,7 @@ local function balancesaber(inst)
 	
 	inst:AddTag("saber")
 end
-
+										
 local function balancekendostick(inst)
 	if not TheWorld.ismastersim then
 		return inst
@@ -62,7 +61,7 @@ local function balancekendostick(inst)
 	return inst
 end
 
-if not ignoreMCR then
+if not info.ignoreMCR then
 	if info.version ~= MODTUNING.SABER_SUPPORTED_VERSION then
 		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
 	end

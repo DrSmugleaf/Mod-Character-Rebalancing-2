@@ -57,7 +57,7 @@ local function balanceluffyhat(inst)
 	inst.components.inventoryitem.keepondeath = false
 end
 
-if not ignoreMCR then
+if not info.ignoreMCR then
 	if info.version ~= MODTUNING.LUFFY_SUPPORTED_VERSION then
 		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.LUFFY_SUPPORTED_VERSION)
 	end

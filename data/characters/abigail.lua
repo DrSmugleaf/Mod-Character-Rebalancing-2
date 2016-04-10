@@ -116,7 +116,7 @@ local function balancequartz(inst)
 	inst.components.edible.sanityvalue = MODTUNING.ABIGAIL_QUARTZ_SANITYVALUE
 end
 
-if not ignoreMCR then
+if not info.ignoreMCR then
 	if info.version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
 		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
 	end
