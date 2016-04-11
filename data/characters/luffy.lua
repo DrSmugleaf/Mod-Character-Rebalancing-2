@@ -2,10 +2,6 @@ local info = KnownModIndex:LoadModInfo("workshop-380079744")
 
 
 local function addsimpostinit(inst)
-	if not TheWorld.ismastersim then
-		return inst
-	end
-	
 	AddRecipe("luffyhat", MODTUNING.LUFFY_HAT_INGREDIENTS, RECIPETABS.DRESS, MODTUNING.LUFFY_HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
 end
 

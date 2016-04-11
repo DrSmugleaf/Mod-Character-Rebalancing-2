@@ -2,9 +2,6 @@ local info = KnownModIndex:LoadModInfo("workshop-#")
 
 
 local function addsimpostinit(inst)
-	if not TheWorld.ismastersim then
-		return inst
-	end
 end
 
 local function balancecharacter(inst)

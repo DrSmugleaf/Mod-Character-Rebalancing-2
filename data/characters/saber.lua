@@ -2,10 +2,6 @@ local info = KnownModIndex:LoadModInfo("workshop-376244443")
 
 
 local function addsimpostinit(inst)
-	if not TheWorld.ismastersim then
-		return inst
-	end
-	
 	AddRecipe("kendostick", {Ingredient("log", 1), Ingredient("twigs", 2)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 end
 

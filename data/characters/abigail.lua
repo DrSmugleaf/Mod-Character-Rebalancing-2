@@ -2,10 +2,6 @@ local info = KnownModIndex:LoadModInfo("workshop-647062183")
 
 
 local function addsimpostinit(inst)
-	if not TheWorld.ismastersim then
-		return inst
-	end
-	
 	AllRecipes["galaxysword"].level = MODTUNING.ABIGAIL_GALAXYSWORD_TECH
 	AllRecipes["sdpan_flute"].ingredients = MODTUNING.ABIGAIL_PANFLUTE_INGREDIENTS
 	AllRecipes["sdpan_flute"].level = MODTUNING.ABIGAIL_PANFLUTE_TECH
