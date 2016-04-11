@@ -1,65 +1,50 @@
---[[	Copyright (c) 2015 Kzisor/Ysovuka	]]
+--[[	Copyright © 2015 Ysovuka/Kzisor	 ]]
 local _G = _G or GLOBAL
-local _M = env
+local _M = _M or env
 
 local assert = _G.assert
 local error = assert( _G.error )
 local rawget = assert( _G.rawget )
 local setmetatable = assert( _G.setmetatable )
 local setfenv = assert( _G.setfenv )
-
---[[
-	The following is to prevent this file from being ran more than once.
-
-	This is necessary to allow it to be loaded both from modmain.lua,
-	modworldgenmain.lua and other mods, without the former load overriding
-	the latter.
-]]
-local _IDENTIFIER = "mod.environment"
-
-if _G.rawget(_G.package.loaded, _IDENTIFIER) then
+local _IDENTIFIER = modname
+local filter = "!core/?.lua;!core/screens/?.lua;!core/widgets/?.lua"
+_M.filters = string.gsub(filter, "%!", MODROOT)
+if rawget(_G.package.loaded, _IDENTIFIER) then
 	return _G.package.loaded[_IDENTIFIER]
 end
-
 
 local function preload_searcher(self, name)
 	return self.package.preload[name] ~= nil and self.package.preload[name] or "No field package[ '"..name.."' ] found."
 end
 
-local function default_searcher(self, name)
-	name = name:gsub("[.\\]", "/")
-
+local function default_searcher(self, name, filters)
+	name = name:gsub("[\\]", "/")
 	local fail_pieces = {}
-
-	for pathspec in self.package.path:gmatch("[^;]+") do
-		local path = pathspec:gsub("%?", name, 1)
-
+	local paths = string.format( "%s;%s", filters, self.package.path)
+	for pathspec in string.gmatch(paths, "[^;]+") do
+		local path = pathspec:gsub("%?", name, 1)		
 		if _G.kleifileexists(path) then
 			local fn = _G.kleiloadlua(path)
-
 			return type(fn) == "function" and fn or error(tostring(fn or "Unknown error"), 3)
 		else
 			table.insert(fail_pieces, "\tNo file '"..path.."' found.")
 		end
 	end
-
 	return table.concat(fail_pieces, "\n")
 end
 
--- Create the table to clone the global variables.
 local function CreateNewEnvironment(env)
 	setmetatable(env, {
 		__index = _G and function(t, k)
-				return rawget(t, k) or rawget(_G, k) or rawget(env, k)
+				return rawget(_G, k) or rawget(ModManager, k)
 			end,
 		})
-
 	return env
 end
 
 local Requirer = Class(function(self, default_env, load_once)
 	default_env = CreateNewEnvironment(default_env or _G)
-
 	self.package =
 	{
 		path = MODROOT.."?.lua",
@@ -68,14 +53,24 @@ local Requirer = Class(function(self, default_env, load_once)
 		loaded = {},
 	}
 	self.package.loaders = self.package.searchers
-
 	function self:GetDefaultEnvironment()
 		return default_env
 	end
 end)
 
+function _M.IsWorldGenerating()
+	if _M.worldgen ~= worldgen then
+		_M.worldgen = worldgen
+	end
+	return _M.worldgen
+end
+
 function Requirer:GetEnvironment()
 	return self.env or self:GetDefaultEnvironment()
+end
+
+function _M.Initialize()
+	_G[_IDENTIFIER]( "main" )( _M.IsWorldGenerating() )
 end
 
 function Requirer:SetEnviornment(env)
@@ -83,41 +78,34 @@ function Requirer:SetEnviornment(env)
 end
 
 function Requirer:__call(name)
-	if self.package.loaded[name] then
-		return self.package.loaded[name]
-	elseif _G.package.loaded[name] then
-		return _G.package.loaded[name]
-	else
-		local fail_pieces = {}
-
-		for _, searcher in ipairs(self.package.searchers) do
-			local fn = searcher(self, name)
-
-			if type(fn) == "function" then
-				_G.setfenv(fn, self:GetEnvironment())
-
-				self.package.loaded[name] = fn(name) or self.package.loaded[name] or true
-
-				_G.package.loaded[name] = self.package.loaded[name]
-
+	local fail_pieces = {}
+	for _, searcher in ipairs(self.package.searchers) do
+		local fn = searcher(self, name, _M.filters)
+		if type(fn) == "function" then
+			_G.setfenv(fn, self:GetEnvironment())
+			if load_once and _G.package.loaded[name] then
+				return _G.package.loaded[name]
+			elseif load_once and self.package.loaded[name] then
 				return self.package.loaded[name]
-			elseif type(fn) == "string" then
-				table.insert(fail_pieces, fn)
+			else
+				self.package.loaded[name] = fn(name) or self.package.loaded[name] or true
+				_G.package.loaded[name] = self.package.loaded[name]
+				return fn(name) or self.package.loaded[name]
 			end
+		elseif type(fn) == "string" then
+			table.insert(fail_pieces, fn)
 		end
-
-		table.insert(fail_pieces, 1, ("Mod module '%s' not found:"):format(name))
-
-		return error(table.concat(fail_pieces, "\n"), 2)
 	end
+	table.insert(fail_pieces, 1, ("Mod module '%s' not found:"):format(name))
+	return error(table.concat(fail_pieces, "\n"), 2)
 end
 
 function Requirer:ExportAs(id)
 	_G.package.loaded[id] = self
 end
 
-local ModRequirer = Class(Requirer, function(self)
-	Requirer._ctor(self, _M)
+local ModRequirer = Class(Requirer, function(self, load_once)
+	Requirer._ctor(self, _M, load_once)
 end)
 
 function ModRequirer:GetModEnvironment()
@@ -127,8 +115,6 @@ end
 function ModRequirer:GetModInfo()
 	return self:GetModEnvironment().modinfo
 end
-
-use = ModRequirer()
-_G[_IDENTIFIER] = use
-
-return use
+_M.Map = {}
+_M.Load = ModRequirer()
+_G[_IDENTIFIER] = ModRequirer()
