@@ -110,6 +110,10 @@ local function balancequartz(inst)
 	inst.components.edible.healthvalue = MODTUNING.ABIGAIL_QUARTZ_HEALTHVALUE
 	inst.components.edible.hungervalue = MODTUNING.ABIGAIL_QUARTZ_HUNGERVALUE
 	inst.components.edible.sanityvalue = MODTUNING.ABIGAIL_QUARTZ_SANITYVALUE
+	
+	inst:RemoveComponent("tradable")
+	
+	MakeHauntableLaunch(inst)
 end
 
 local function balanceiridium(inst)
@@ -118,6 +122,29 @@ local function balanceiridium(inst)
 	end
 	
 	inst:RemoveComponent("edible")
+	inst:RemoveComponent("tradable")
+	
+	MakeHauntableLaunch(inst)
+end
+
+local function balancequartzbar(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
+	inst.components.tradable.goldvalue = 2
+	
+	MakeHauntableLaunch(inst)
+end
+
+local function balanceiridiumbar(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
+	inst.components.tradable.goldvalue = 5
+	
+	MakeHauntableLaunch(inst)
 end
 
 if not info.ignoreMCR then
@@ -131,6 +158,8 @@ if not info.ignoreMCR then
 	AddPrefabPostInit("sdpan_flute", balancepanflute)
 	AddPrefabPostInit("sdquartz", balancequartz)
 	AddPrefabPostInit("sdiridium", balanceiridium)
+	AddPrefabPostInit("sdquartzbar", balancequartzbar)
+	AddPrefabPostInit("sdiridiumbar", balanceiridiumbar)
 else
 	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end
