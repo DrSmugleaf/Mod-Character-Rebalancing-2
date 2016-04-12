@@ -112,6 +112,14 @@ local function balancequartz(inst)
 	inst.components.edible.sanityvalue = MODTUNING.ABIGAIL_QUARTZ_SANITYVALUE
 end
 
+local function balanceiridium(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
+	inst:RemoveComponent("edible")
+end
+
 if not info.ignoreMCR then
 	if info.version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
 		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
@@ -122,6 +130,7 @@ if not info.ignoreMCR then
 	AddPrefabPostInit("galaxysword", balancegalaxysword)
 	AddPrefabPostInit("sdpan_flute", balancepanflute)
 	AddPrefabPostInit("sdquartz", balancequartz)
+	AddPrefabPostInit("sdiridium", balanceiridium)
 else
 	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
 end
