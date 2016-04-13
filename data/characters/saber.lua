@@ -11,22 +11,23 @@ local function balancesaber(inst)
 	end
 	
 	local saberstats =	{
-							health = MODTUNING.SABER_HEALTH,
-							hunger = MODTUNING.SABER_HUNGER,
-							sanity = MODTUNING.SABER_SANITY,
-							damage = MODTUNING.SABER_DAMAGE,
-							walkspeed = MODTUNING.SABER_WALK_SPEED,
-							runspeed = MODTUNING.SABER_RUN_SPEED,
-							winterinsulation = MODTUNING.SABER_WINTER_INSULATION,
-							summerinsulation = MODTUNING.SABER_SUMMER_INSULATION,
-							dapperness = MODTUNING.SABER_DAPPERNESS,
-							dapperness_mult = MODTUNING.SABER_DAPPERNESS_MULT,
-							night_drain_mult = MODTUNING.SABER_NIGHT_DRAIN_MULT,
-							neg_aura_mult = MODTUNING.SABER_NEG_AURA_MULT,
-							strongstomach = MODTUNING.SABER_STRONG_STOMACH,
-							hungerrate = MODTUNING.SABER_HUNGER_RATE,
-							hungerhurtrate = MODTUNING.SABER_HUNGER_HURT_RATE,
-						}
+		health = MODTUNING.SABER_HEALTH,
+		hunger = MODTUNING.SABER_HUNGER,
+		sanity = MODTUNING.SABER_SANITY,
+		damage = MODTUNING.SABER_DAMAGE,
+		walkspeed = MODTUNING.SABER_WALK_SPEED,
+		runspeed = MODTUNING.SABER_RUN_SPEED,
+		winterinsulation = MODTUNING.SABER_WINTER_INSULATION,
+		summerinsulation = MODTUNING.SABER_SUMMER_INSULATION,
+		dapperness = MODTUNING.SABER_DAPPERNESS,
+		dapperness_mult = MODTUNING.SABER_DAPPERNESS_MULT,
+		night_drain_mult = MODTUNING.SABER_NIGHT_DRAIN_MULT,
+		neg_aura_mult = MODTUNING.SABER_NEG_AURA_MULT,
+		strongstomach = MODTUNING.SABER_STRONG_STOMACH,
+		hungerrate = MODTUNING.SABER_HUNGER_RATE,
+		hungerhurtrate = MODTUNING.SABER_HUNGER_HURT_RATE,
+		absorb = MODTUNING.SABER_ABSORPTION,
+	}
 	
 	ModifyCharacter:ModifyStats(inst, saberstats)
 	

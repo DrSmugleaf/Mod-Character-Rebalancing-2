@@ -10,22 +10,23 @@ local function balancetamamo(inst)
 	end
 	
 	local tamamostats =	{
-							health = MODTUNING.TAMAMO_HEALTH,
-							hunger = MODTUNING.TAMAMO_HUNGER,
-							sanity = MODTUNING.TAMAMO_SANITY,
-							damage = MODTUNING.TAMAMO_DAMAGE,
-							walkspeed = MODTUNING.TAMAMO_WALK_SPEED,
-							runspeed = MODTUNING.TAMAMO_RUN_SPEED,
-							winterinsulation = MODTUNING.TAMAMO_WINTER_INSULATION,
-							summerinsulation = MODTUNING.TAMAMO_SUMMER_INSULATION,
-							dapperness = MODTUNING.TAMAMO_DAPPERNESS,
-							dapperness_mult = MODTUNING.TAMAMO_DAPPERNESS_MULT,
-							night_drain_mult = MODTUNING.TAMAMO_NIGHT_DRAIN_MULT,
-							neg_aura_mult = MODTUNING.TAMAMO_NEG_AURA_MULT,
-							strongstomach = MODTUNING.TAMAMO_STRONG_STOMACH,
-							hungerrate = MODTUNING.TAMAMO_HUNGER_RATE,
-							hungerkillrate = MODTUNING.TAMAMO_HUNGER_KILL_RATE,
-						}
+		health = MODTUNING.TAMAMO_HEALTH,
+		hunger = MODTUNING.TAMAMO_HUNGER,
+		sanity = MODTUNING.TAMAMO_SANITY,
+		damage = MODTUNING.TAMAMO_DAMAGE,
+		walkspeed = MODTUNING.TAMAMO_WALK_SPEED,
+		runspeed = MODTUNING.TAMAMO_RUN_SPEED,
+		winterinsulation = MODTUNING.TAMAMO_WINTER_INSULATION,
+		summerinsulation = MODTUNING.TAMAMO_SUMMER_INSULATION,
+		dapperness = MODTUNING.TAMAMO_DAPPERNESS,
+		dapperness_mult = MODTUNING.TAMAMO_DAPPERNESS_MULT,
+		night_drain_mult = MODTUNING.TAMAMO_NIGHT_DRAIN_MULT,
+		neg_aura_mult = MODTUNING.TAMAMO_NEG_AURA_MULT,
+		strongstomach = MODTUNING.TAMAMO_STRONG_STOMACH,
+		hungerrate = MODTUNING.TAMAMO_HUNGER_RATE,
+		hungerkillrate = MODTUNING.TAMAMO_HUNGER_KILL_RATE,
+		absorb = MODTUNING.TAMAMO_ABSORPTION,
+	}
 	
 	ModifyCharacter:ModifyStats(inst, tamamostats)
 	

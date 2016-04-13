@@ -23,6 +23,8 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
 	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
 	inst.components.hunger:SetKillRate(stats.hungerhurtrate or inst.components.hunger.hurtrate)
+	
+	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
 end
 
 function ModifyCharacter:ModifyStatsWithLeveling(inst, stats)
