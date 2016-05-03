@@ -34,6 +34,7 @@ local function balanceabigail(inst)
 	
 	ModifyCharacter:ModifyStats(inst, abigailstats)
 	ModifyCharacter:ChangeStartingInventory(inst, start_inv)
+	
 	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
 end
 

@@ -7,6 +7,17 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.current)
 	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.current)
 	
+	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
+	
+	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
+	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
+	inst.components.hunger:SetKillRate(stats.hungerhurtrate or inst.components.hunger.hurtrate)
+	
+	inst.components.sanity.dapperness = stats.dapperness or inst.components.sanity.dapperness
+	inst.components.sanity.dapperness_mult = stats.dapperness_mult or inst.components.sanity.dapperness_mult
+	inst.components.sanity.night_drain_mult = stats.night_drain_mult or inst.components.sanity.night_drain_mult
+	inst.components.sanity.neg_aura_mult = stats.neg_aura_mult or inst.components.sanity.neg_aura_mult
+	
 	inst.components.combat.damagemultiplier = stats.damage or inst.components.combat.damagemultiplier
 	
 	inst.components.locomotor.walkspeed = stats.walkspeed and TUNING.WILSON_WALK_SPEED * stats.walkspeed or inst.components.locomotor.walkspeed
@@ -14,17 +25,6 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	
 	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation or 0
 	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.summerinsulation or 0
-	
-	inst.components.sanity.dapperness = stats.dapperness or inst.components.sanity.dapperness
-	inst.components.sanity.dapperness_mult = stats.dapperness_mult or inst.components.sanity.dapperness_mult
-	inst.components.sanity.night_drain_mult = stats.night_drain_mult or inst.components.sanity.night_drain_mult
-	inst.components.sanity.neg_aura_mult = stats.neg_aura_mult or inst.components.sanity.neg_aura_mult
-	
-	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
-	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
-	inst.components.hunger:SetKillRate(stats.hungerhurtrate or inst.components.hunger.hurtrate)
-	
-	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
 end
 
 function ModifyCharacter:ModifyStatsWithLeveling(inst, stats)
