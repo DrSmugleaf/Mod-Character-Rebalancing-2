@@ -69,9 +69,9 @@ local function balancesakura(inst)
 		end
 	end
 	
-	inst:WatchWorldState("startday", updatestats(inst))
-	inst:WatchWorldState("startdusk", updatestats(inst))
-	inst:WatchWorldState("startnight", updatestats(inst))
+	inst:WatchWorldState("startday", function(inst) updatestats(inst) end)
+	inst:WatchWorldState("startdusk", function(inst) updatestats(inst) end)
+	inst:WatchWorldState("startnight", function(inst) updatestats(inst) end)
 	updatestats(inst)
 end
 
