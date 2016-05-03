@@ -10,13 +10,14 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
 	
 	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
-	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
+	inst.components.eater.ignoresspoilage = stats.ignoresspoilage or inst.components.eater.ignoresspoilage
 	inst.components.hunger:SetKillRate(stats.hungerhurtrate or inst.components.hunger.hurtrate)
+	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
 	
 	inst.components.sanity.dapperness = stats.dapperness or inst.components.sanity.dapperness
 	inst.components.sanity.dapperness_mult = stats.dapperness_mult or inst.components.sanity.dapperness_mult
-	inst.components.sanity.night_drain_mult = stats.night_drain_mult or inst.components.sanity.night_drain_mult
 	inst.components.sanity.neg_aura_mult = stats.neg_aura_mult or inst.components.sanity.neg_aura_mult
+	inst.components.sanity.night_drain_mult = stats.night_drain_mult or inst.components.sanity.night_drain_mult
 	
 	inst.components.combat.damagemultiplier = stats.damage or inst.components.combat.damagemultiplier
 	

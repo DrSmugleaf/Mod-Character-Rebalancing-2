@@ -13,19 +13,26 @@ local function balancesakura(inst)
 		health = MODTUNING.SAKURA_HEALTH,
 		hunger = MODTUNING.SAKURA_HUNGER,
 		sanity = MODTUNING.SAKURA_SANITY,
-		damage = MODTUNING.SAKURA_DAMAGE,
-		walkspeed = MODTUNING.SAKURA_WALK_SPEED,
-		runspeed = MODTUNING.SAKURA_RUN_SPEED,
-		winterinsulation = MODTUNING.SAKURA_WINTER_INSULATION,
-		summerinsulation = MODTUNING.SAKURA_SUMMER_INSULATION,
+		
+		absorb = MODTUNING.SAKURA_ABSORPTION,
+		
+		ignoresspoilage = MODTUNING.SAKURA_IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.SAKURA_STRONG_STOMACH,
+		hungerkillrate = MODTUNING.SAKURA_HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.SAKURA_HUNGER_RATE,
+		
 		dapperness = MODTUNING.SAKURA_DAPPERNESS,
 		dapperness_mult = MODTUNING.SAKURA_DAPPERNESS_MULT,
-		night_drain_mult = MODTUNING.SAKURA_NIGHT_DRAIN_MULT,
 		neg_aura_mult = MODTUNING.SAKURA_NEG_AURA_MULT,
-		strongstomach = MODTUNING.SAKURA_STRONG_STOMACH,
-		hungerrate = MODTUNING.SAKURA_HUNGER_RATE,
-		hungerkillrate = MODTUNING.SAKURA_HUNGER_KILL_RATE,
-		absorb = MODTUNING.SAKURA_ABSORPTION,
+		night_drain_mult = MODTUNING.SAKURA_NIGHT_DRAIN_MULT,
+		
+		damage = MODTUNING.SAKURA_DAMAGE,
+		
+		walkspeed = MODTUNING.SAKURA_WALK_SPEED,
+		runspeed = MODTUNING.SAKURA_RUN_SPEED,
+		
+		winterinsulation = MODTUNING.SAKURA_WINTER_INSULATION,
+		summerinsulation = MODTUNING.SAKURA_SUMMER_INSULATION,
 	}
 	
 	ModifyCharacter:ModifyStats(inst, sakurastats)
@@ -38,7 +45,6 @@ local function balancesakura(inst)
 	
 	inst:RemoveComponent("reader")
 	
-	inst.components.eater.ignoresspoilage = MODTUNING.SAKURA_IGNORE_SPOILAGE
 	local defaulteater = require("components/eater")
 	function inst.components.eater:Eat(food)
 		return defaulteater.Eat(self, food)

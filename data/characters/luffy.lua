@@ -14,19 +14,26 @@ local function balanceluffy(inst)
 		health = MODTUNING.LUFFY_HEALTH,
 		hunger = MODTUNING.LUFFY_HUNGER,
 		sanity = MODTUNING.LUFFY_SANITY,
-		damage = MODTUNING.LUFFY_DAMAGE,
-		walkspeed = MODTUNING.LUFFY_WALK_SPEED,
-		runspeed = MODTUNING.LUFFY_RUN_SPEED,
-		winterinsulation = MODTUNING.LUFFY_WINTER_INSULATION,
-		summerinsulation = MODTUNING.LUFFY_SUMMER_INSULATION,
+		
+		absorb = MODTUNING.LUFFY_ABSORPTION,
+		
+		ignoresspoilage = MODTUNING.LUFFY_IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.LUFFY_STRONG_STOMACH,
+		hungerkillrate = MODTUNING.LUFFY_HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.LUFFY_HUNGER_RATE,
+		
 		dapperness = MODTUNING.LUFFY_DAPPERNESS,
 		dapperness_mult = MODTUNING.LUFFY_DAPPERNESS_MULT,
-		night_drain_mult = MODTUNING.LUFFY_NIGHT_DRAIN_MULT,
 		neg_aura_mult = MODTUNING.LUFFY_NEG_AURA_MULT,
-		strongstomach = MODTUNING.LUFFY_STRONG_STOMACH,
-		hungerrate = MODTUNING.LUFFY_HUNGER_RATE,
-		hungerkillrate = MODTUNING.LUFFY_HUNGER_KILL_RATE,
-		absorb = MODTUNING.LUFFY_ABSORPTION,
+		night_drain_mult = MODTUNING.LUFFY_NIGHT_DRAIN_MULT,
+		
+		damage = MODTUNING.LUFFY_DAMAGE,
+		
+		walkspeed = MODTUNING.LUFFY_WALK_SPEED,
+		runspeed = MODTUNING.LUFFY_RUN_SPEED,
+		
+		winterinsulation = MODTUNING.LUFFY_WINTER_INSULATION,
+		summerinsulation = MODTUNING.LUFFY_SUMMER_INSULATION,
 	}
 	
 	ModifyCharacter:ModifyStats(inst, luffystats)

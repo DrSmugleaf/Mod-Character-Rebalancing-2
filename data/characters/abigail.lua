@@ -15,19 +15,27 @@ local function balanceabigail(inst)
 	local abigailstats =	{
 		health = MODTUNING.ABIGAIL_HEALTH,
 		hunger = MODTUNING.ABIGAIL_HUNGER,
-		damage = MODTUNING.ABIGAIL_DAMAGE,
-		walkspeed = MODTUNING.ABIGAIL_WALK_SPEED,
-		runspeed = MODTUNING.ABIGAIL_RUN_SPEED,
-		winterinsulation = MODTUNING.ABIGAIL_WINTER_INSULATION,
-		summerinsulation = MODTUNING.ABIGAIL_SUMMER_INSULATION,
+		sanity = MODTUNING.ABIGAIL_SANITY,
+		
+		absorb = MODTUNING.ABIGAIL_ABSORPTION,
+		
+		ignoresspoilage = MODTUNING.ABIGAIL_IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.ABIGAIL_STRONG_STOMACH,
+		hungerkillrate = MODTUNING.ABIGAIL_HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.ABIGAIL_HUNGER_RATE,
+		
 		dapperness = MODTUNING.ABIGAIL_DAPPERNESS,
 		dapperness_mult = MODTUNING.ABIGAIL_DAPPERNESS_MULT,
-		night_drain_mult = MODTUNING.ABIGAIL_NIGHT_DRAIN_MULT,
 		neg_aura_mult = MODTUNING.ABIGAIL_NEG_AURA_MULT,
-		strongstomach = MODTUNING.ABIGAIL_STRONG_STOMACH,
-		hungerrate = MODTUNING.ABIGAIL_HUNGER_RATE,
-		hungerhurtrate = MODTUNING.ABIGAIL_HUNGER_HURT_RATE,
-		absorb = MODTUNING.ABIGAIL_ABSORPTION,
+		night_drain_mult = MODTUNING.ABIGAIL_NIGHT_DRAIN_MULT,
+		
+		damage = MODTUNING.ABIGAIL_DAMAGE,
+		
+		walkspeed = MODTUNING.ABIGAIL_WALK_SPEED,
+		runspeed = MODTUNING.ABIGAIL_RUN_SPEED,
+		
+		winterinsulation = MODTUNING.ABIGAIL_WINTER_INSULATION,
+		summerinsulation = MODTUNING.ABIGAIL_SUMMER_INSULATION,
 	}
 	
 	local start_inv = {"pumpkin_seeds", "pumpkin_seeds", "pumpkin_seeds"}
