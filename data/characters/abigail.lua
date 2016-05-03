@@ -149,19 +149,23 @@ local function balanceiridiumbar(inst)
 	MakeHauntableLaunch(inst)
 end
 
-if not info.ignoreMCR then
-	if info.version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
+if GetModConfigData("ABIGAIL_BALANCED") then
+	if not info.ignoreMCR then
+		if info.version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
+		end
+		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
+		AddSimPostInit(addsimpostinit)
+		AddPrefabPostInit("sdabigail", balanceabigail)
+		AddPrefabPostInit("galaxysword", balancegalaxysword)
+		AddPrefabPostInit("sdpan_flute", balancepanflute)
+		AddPrefabPostInit("sdquartz", balancequartz)
+		AddPrefabPostInit("sdiridium", balanceiridium)
+		AddPrefabPostInit("sdquartzbar", balancequartzbar)
+		AddPrefabPostInit("sdiridiumbar", balanceiridiumbar)
+	else
+		LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
 	end
-	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
-	AddSimPostInit(addsimpostinit)
-	AddPrefabPostInit("sdabigail", balanceabigail)
-	AddPrefabPostInit("galaxysword", balancegalaxysword)
-	AddPrefabPostInit("sdpan_flute", balancepanflute)
-	AddPrefabPostInit("sdquartz", balancequartz)
-	AddPrefabPostInit("sdiridium", balanceiridium)
-	AddPrefabPostInit("sdquartzbar", balancequartzbar)
-	AddPrefabPostInit("sdiridiumbar", balanceiridiumbar)
 else
-	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " by " .. info.author .. " Version: " .. info.version .. " disabled by server")
 end

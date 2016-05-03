@@ -22,5 +22,55 @@ icon = "modicon.tex"
 
 server_filter_tags = {"mod character rebalancing","mod character rebalancing 2","mcr","mcr2"}
 
-configuration_options =  {
+configuration_options = {
+	{
+		name = "ABIGAIL_BALANCED",
+		label = "Abigail(Stardew)",
+		hover = "By Silhh and Arcade. Latest supported version: 1.2.1",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
+	{
+		name = "LUFFY_BALANCED",
+		label = "Luffy(OS 4.0)",
+		hover = "By Silhh and Arcade. Latest supported version: 1.2.1",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
+	{
+		name = "SABER_BALANCED",
+		label = "Saber(P)",
+		hover = "By Silh. Latest supported version: 1.2.4",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
+		{
+		name = "SAKURA_BALANCED",
+		label = "(Dark)Sakura Matou(P)",
+		hover = "By Silh and Arcade. Latest supported version: 1.3.9",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
+	{
+		name = "TAMAMO_BALANCED",
+		label = "Tamamo(OS 4.0)",
+		hover = "By Silhh and Arcade. Latest supported version: 1.3.5",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
 }

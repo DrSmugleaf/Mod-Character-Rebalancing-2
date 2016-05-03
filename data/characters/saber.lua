@@ -58,14 +58,18 @@ local function balancekendostick(inst)
 	return inst
 end
 
-if not info.ignoreMCR then
-	if info.version ~= MODTUNING.SABER_SUPPORTED_VERSION then
-		LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
+if GetModConfigData("SABER_BALANCED") then
+	if not info.ignoreMCR then
+		if info.version ~= MODTUNING.SABER_SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
+		end
+		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
+		AddSimPostInit(addsimpostinit)
+		AddPrefabPostInit("saber", balancesaber)
+		AddPrefabPostInit("kendostick", balancekendostick)
+	else
+		LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
 	end
-	LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
-	AddSimPostInit(addsimpostinit)
-	AddPrefabPostInit("saber", balancesaber)
-	AddPrefabPostInit("kendostick", balancekendostick)
 else
-	LogHelper:PrintInfo("Balancing " .. info.name .. " disabled by " .. info.author)
+	LogHelper:PrintInfo("Balancing " .. info.name .. " by " .. info.author .. " Version: " .. info.version .. " disabled by server")
 end
