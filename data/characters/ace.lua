@@ -1,6 +1,7 @@
 local info = KnownModIndex:LoadModInfo("workshop-388109833")
 
 local function addsimpostinit(inst)
+	AddRecipe("acefire", MODTUNING.ACE_FIRE_INGREDIENTS, RECIPETABS.MAGIC, MODTUNING.ACE_FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
 end
 
 local function balanceace(inst)
@@ -36,6 +37,8 @@ local function balanceace(inst)
 	
 	ModifyCharacter:ModifyStats(inst, acestats)
 	
+	inst:AddTag("ace")
+	
 	inst.components.combat.onhitotherfn = (function(attacker, inst, damage, stimuli)
 		inst.components.burnable:Ignite(nil, attacker)
 	end)
@@ -48,6 +51,40 @@ local function balanceace(inst)
 	end)
 end
 
+local function balanceacefire(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
+	local function onattack(weapon, attacker, target)
+		local atkfx = SpawnPrefab("attackfire_fx")
+		if atkfx then
+			local follower = atkfx.entity:AddFollower()
+			follower:FollowSymbol(target.GUID, target.components.combat.hiteffectsymbol, 0, 0, 0)
+		end
+		
+		if attacker.components ~= nil and attacker.components.sanity ~= nil then
+			attacker.components.sanity:DoDelta(MODTUNING.ACE_FIRE_PENALTY_SANITY_ONATTACK)
+		end
+	end
+	
+	inst:AddTag("shadow")
+	
+	inst.components.weapon:SetDamage(MODTUNING.ACE_FIRE_DAMAGE)
+	inst.components.weapon:SetOnAttack(onattack)
+	
+	inst:AddComponent("finiteuses")
+	inst.components.finiteuses:SetMaxUses(MODTUNING.ACE_FIRE_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.ACE_FIRE_USES)
+	inst.components.finiteuses:SetOnFinished(inst.Remove)
+	
+	inst.components.inventoryitem.keepondeath = false
+	
+	MakeHauntableLaunch(inst)
+	
+	return inst
+end
+
 if GetModConfigData("ACE_BALANCED") then
 	if not info.ignoreMCR then
 		if info.version ~= MODTUNING.ACE_SUPPORTED_VERSION then
@@ -56,6 +93,7 @@ if GetModConfigData("ACE_BALANCED") then
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)
 		AddPrefabPostInit("ace", balanceace)
+		AddPrefabPostInit("acefire", balanceacefire)
 	else
 		LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
 	end
