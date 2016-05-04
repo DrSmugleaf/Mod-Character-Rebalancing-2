@@ -43,6 +43,9 @@ local function balanceace(inst)
 	inst.components.temperature.mintemp = MODTUNING.ACE_MIN_TEMP
 	
 	inst.Light:Enable(false)
+	inst:ListenForEvent("ms_respawnedfromghost", function(inst)
+		inst.Light:Enable(false)
+	end)
 end
 
 if GetModConfigData("ACE_BALANCED") then
