@@ -40,7 +40,7 @@ local function balanceace(inst)
 		inst.components.burnable:Ignite(nil, attacker)
 	end)
 	
-	inst.components.temperature.mintemp = MODTUNING.ACE_MIN_ENTITY_TEMP
+	inst.components.temperature.mintemp = MODTUNING.ACE_MIN_TEMP
 	
 	inst.Light:Enable(false)
 end
