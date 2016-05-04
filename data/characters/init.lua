@@ -1,6 +1,9 @@
 if KnownModIndex:IsModEnabled("workshop-647062183") or KnownModIndex:IsModTempEnabled("workshop-647062183") then
 	Load "data/characters/abigail"
 end
+if KnownModIndex:IsModEnabled("workshop-388109833") or KnownModIndex:IsModTempEnabled("workshop-388109833") then
+	Load "data/characters/ace"
+end
 if KnownModIndex:IsModEnabled("workshop-380079744") or KnownModIndex:IsModTempEnabled("workshop-380079744") then
 	Load "data/characters/luffy"
 end

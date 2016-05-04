@@ -22,7 +22,17 @@ icon = "modicon.tex"
 
 server_filter_tags = {"mod character rebalancing","mod character rebalancing 2","mcr","mcr2"}
 
-configuration_options = {
+configuration_options =	{
+	{
+		name = "ACE_BALANCED",
+		label = "Ace(P)",
+		hover = "By Silh. Latest supported version: 1.1.16",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
 	{
 		name = "ABIGAIL_BALANCED",
 		label = "Abigail(Stardew)",
