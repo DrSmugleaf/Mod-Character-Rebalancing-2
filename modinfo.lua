@@ -1,5 +1,6 @@
 -- This information tells other players more about the mod
 name = "Mod Character Rebalancing 2"
+id = "mod.character.rebalancing.2"
 description = ""
 author = "DrSmugleaf"
 version = "1.0.0"

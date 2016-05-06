@@ -1,8 +1,8 @@
 local info = KnownModIndex:LoadModInfo("workshop-388109833")
 
 local function addsimpostinit(inst)
-	AddRecipe("acefire", MODTUNING.ACE_FIRE_INGREDIENTS, RECIPETABS.MAGIC, MODTUNING.ACE_FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
-	AddRecipe("acehat", MODTUNING.ACE_HAT_INGREDIENTS, RECIPETABS.DRESS, MODTUNING.ACE_HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
+	AddRecipe("acefire", MODTUNING.ACE_FIRE_INGREDIENTS, MODTUNING.ACE_FIRE_RECIPETAB, MODTUNING.ACE_FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
+	AddRecipe("acehat", MODTUNING.ACE_HAT_INGREDIENTS, MODTUNING.ACE_HAT_RECIPETAB, MODTUNING.ACE_HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
 end
 
 local function balanceace(inst)

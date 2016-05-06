@@ -1,7 +1,7 @@
 local info = KnownModIndex:LoadModInfo("workshop-380079744")
 
 local function addsimpostinit(inst)
-	AddRecipe("luffyhat", MODTUNING.LUFFY_HAT_INGREDIENTS, RECIPETABS.DRESS, MODTUNING.LUFFY_HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
+	AddRecipe("luffyhat", MODTUNING.LUFFY_HAT_INGREDIENTS, MODTUNING.LUFFY_HAT_RECIPETAB, MODTUNING.LUFFY_HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
 end
 
 local function balanceluffy(inst)

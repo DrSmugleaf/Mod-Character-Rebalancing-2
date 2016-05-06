@@ -10,7 +10,7 @@ Load "textedit"
 MOD_NAME = "Mod Character Rebalancing 2"
 MOD_AUTHOR = "DrSmugleaf"
 MOD_PREFIX = "MCR2"
-MOD_ID = ""
+MOD_ID = "mod.character.rebalancing.2"
 MOD_VERSION = "1.0.0"
 
 -- Scripts Initialization.

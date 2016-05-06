@@ -2,7 +2,7 @@ local info = KnownModIndex:LoadModInfo("workshop-376244443")
 
 
 local function addsimpostinit(inst)
-	AddRecipe("kendostick", {Ingredient("log", 1), Ingredient("twigs", 2)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
+	AddRecipe("kendostick", MODTUNING.SABER_KENDOSTICK_INGREDIENTS, MODTUNING.SABER_KENDOSTICK_RECIPETAB, MODTUNING.SABER_KENDOSTICK_TECH, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 end
 
 local function balancesaber(inst)
