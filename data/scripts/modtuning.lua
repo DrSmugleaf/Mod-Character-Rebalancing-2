@@ -79,6 +79,9 @@ function ModTune(overrides)
 		ACE_FIRE_PENALTY_SANITY_ONATTACK = -2,
 		ACE_FIRE_DAMAGE = 20,
 		ACE_FIRE_USES = 15,
+		ACE_HAT_INGREDIENTS = {Ingredient("cutgrass", 12), Ingredient("rope", 1)},
+		ACE_HAT_TECH = TECH.SCIENCE_ONE,
+		ACE_HAT_PERISHTIME = total_day_time * 5,
 		
 		LUFFY_SUPPORTED_VERSION = "1.2.1",
 		LUFFY_DEFAULT_DAMAGE = 50,

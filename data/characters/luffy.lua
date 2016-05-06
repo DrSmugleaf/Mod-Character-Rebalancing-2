@@ -70,6 +70,8 @@ local function balanceluffyhat(inst)
 	inst.components.fueled:InitializeFuelLevel(MODTUNING.LUFFY_HAT_PERISHTIME)
 	inst.components.fueled:SetDepletedFn(inst.Remove)
 	
+	inst:RemoveComponent("tradable")
+	
 	inst.components.inventoryitem.keepondeath = false
 end
 

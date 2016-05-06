@@ -2,6 +2,7 @@ local info = KnownModIndex:LoadModInfo("workshop-388109833")
 
 local function addsimpostinit(inst)
 	AddRecipe("acefire", MODTUNING.ACE_FIRE_INGREDIENTS, RECIPETABS.MAGIC, MODTUNING.ACE_FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
+	AddRecipe("acehat", MODTUNING.ACE_HAT_INGREDIENTS, RECIPETABS.DRESS, MODTUNING.ACE_HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
 end
 
 local function balanceace(inst)
@@ -149,6 +150,21 @@ local function balanceacefire(inst)
 	return inst
 end
 
+local function balanceacehat(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
+	inst:AddComponent("fueled")
+	inst.components.fueled.fueltype = FUELTYPE.USAGE
+	inst.components.fueled:InitializeFuelLevel(MODTUNING.ACE_HAT_PERISHTIME)
+	inst.components.fueled:SetDepletedFn(inst.Remove)
+	
+	inst:RemoveComponent("tradable")
+	
+	inst.components.inventoryitem.keepondeath = false
+end
+
 if GetModConfigData("ACE_BALANCED") then
 	if not info.ignoreMCR then
 		if info.version ~= MODTUNING.ACE_SUPPORTED_VERSION then
@@ -158,6 +174,7 @@ if GetModConfigData("ACE_BALANCED") then
 		AddSimPostInit(addsimpostinit)
 		AddPrefabPostInit("ace", balanceace)
 		AddPrefabPostInit("acefire", balanceacefire)
+		AddPrefabPostInit("acehat", balanceacehat)
 	else
 		LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
 	end
