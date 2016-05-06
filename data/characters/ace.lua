@@ -68,10 +68,63 @@ local function balanceacefire(inst)
 		end
 	end
 	
+	local function onequip(inst, owner)
+		inst.components.burnable:Ignite()
+		
+		owner.AnimState:OverrideSymbol("swap_object", "swap_acefire", "swap_acefire")
+		owner.AnimState:Show("ARM_carry")
+		owner.AnimState:Hide("ARM_normal")
+		
+		if inst.fires == nil then
+			local fire_fx = nil
+			if inst:GetSkinName() ~= nil then
+				fire_fx = SKIN_FX_PREFAB[inst:GetSkinName()] or {}
+			else
+				fire_fx = {"torchfire"}
+			end
+			
+			inst.fires = {}
+			for _,fx_prefab in pairs(fire_fx) do
+				local fx = SpawnPrefab(fx_prefab)
+				local follower = fx.entity:AddFollower()
+				follower:FollowSymbol(owner.GUID, "swap_object", 0, fx.fx_offset, 0)
+				
+				table.insert(inst.fires, fx)
+			end
+		end
+	end
+	
+	local function onunequip(inst, owner)
+		local skin_build = inst:GetSkinBuild()
+		if skin_build ~= nil then
+			owner:PushEvent("unequipskinneditem", inst:GetSkinName())
+		end
+		
+		if inst.fires ~= nil then
+			for _,fx in pairs(inst.fires) do
+				fx:Remove()
+			end
+			inst.fires = nil
+			inst.SoundEmitter:PlaySound("dontstarve/common/fireOut")
+		end
+		
+		inst.components.burnable:Extinguish()
+		
+		owner.AnimState:Hide("ARM_carry")
+		owner.AnimState:Show("ARM_normal")
+	end
+	
+	local function onpocket(inst, owner)
+		inst.components.burnable:Extinguish()
+	end
+	
+	inst:AddTag("lighter")
 	inst:AddTag("shadow")
 	
 	inst.components.weapon:SetDamage(MODTUNING.ACE_FIRE_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
+	
+	inst:AddComponent("lighter")
 	
 	inst:AddComponent("finiteuses")
 	inst.components.finiteuses:SetMaxUses(MODTUNING.ACE_FIRE_USES)
@@ -79,6 +132,17 @@ local function balanceacefire(inst)
 	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	inst.components.inventoryitem.keepondeath = false
+	
+	inst.components.equippable:SetOnPocket(onpocket)
+	inst.components.equippable:SetOnEquip(onequip)
+	inst.components.equippable:SetOnUnequip(onunequip)
+	
+	inst:AddComponent("waterproofer")
+	inst.components.waterproofer:SetEffectiveness(TUNING.WATERPROOFNESS_SMALL)
+	
+	inst:AddComponent("burnable")
+	inst.components.burnable.canlight = false
+	inst.components.burnable.fxprefab = nil
 	
 	MakeHauntableLaunch(inst)
 	

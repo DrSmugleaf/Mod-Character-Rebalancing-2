@@ -51,7 +51,7 @@ local function balancegalaxysword(inst)
 		return inst
 	end
 	
-	local function OnEquip(inst, owner)
+	local function onequip(inst, owner)
 	    owner.AnimState:OverrideSymbol("swap_object", "swap_galaxysword", "swap_galaxysword")
 		owner.AnimState:Show("ARM_carry")
 		owner.AnimState:Hide("ARM_normal")
@@ -60,7 +60,7 @@ local function balancegalaxysword(inst)
 		end
 	end
 	
-	local function OnUnequip(inst, owner)
+	local function onunequip(inst, owner)
 	    owner.AnimState:Hide("ARM_carry")
 		owner.AnimState:Show("ARM_normal")
 		if owner.components ~= nil and owner.components.sanity ~= nil then
@@ -93,8 +93,8 @@ local function balancegalaxysword(inst)
 	
 	inst.components.inventoryitem.keepondeath = false
 	
-	inst.components.equippable:SetOnEquip(OnEquip)
-	inst.components.equippable:SetOnUnequip(OnUnequip)
+	inst.components.equippable:SetOnEquip(onequip)
+	inst.components.equippable:SetOnUnequip(onunequip)
 	inst.components.equippable.dapperness = MODTUNING.ABIGAIL_GALAXYSWORD_DAPPERNESS
 	inst.components.equippable.walkspeedmult = MODTUNING.ABIGAIL_GALAXYSWORD_SPEED_MULT
 	

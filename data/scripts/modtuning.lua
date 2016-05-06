@@ -69,6 +69,10 @@ function ModTune(overrides)
 		ABIGAIL_QUARTZ_SANITYVALUE = 5,
 		
 		ACE_SUPPORTED_VERSION = "1.1.16",
+		ACE_HEALTH = 150,
+		ACE_HUNGER = 150,
+		ACE_SANITY = 100,
+		ACE_DAMAGE = 1,
 		ACE_MIN_TEMP = TUNING.MIN_ENTITY_TEMP,
 		ACE_FIRE_INGREDIENTS = {Ingredient("nightmarefuel", 1), Ingredient("redgem", 1)},
 		ACE_FIRE_TECH = TECH.MAGIC_THREE,
