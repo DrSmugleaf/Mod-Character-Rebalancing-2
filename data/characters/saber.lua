@@ -46,14 +46,36 @@ local function balancekendostick(inst)
 		return inst
 	end
 	
-	inst.components.weapon:SetDamage(MODTUNING.SABER_KENDOSTICK_DAMAGE)
-	
-	inst.components.weapon:SetOnAttack(function(inst, attacker, target)
-		if math.random() <= MODTUNING.SABER_KENDOSTICK_SLIP_CHANCE then
-			attacker.components.inventory:DropItem(inst, true, true)
-			attacker.components.talker:Say("I should craft a better weapon")
+	local function updatedamage(inst)
+		if inst.components.finiteuses and inst.components.weapon then
+			local dmg = MODTUNING.SABER_KENDOSTICK_DAMAGE * (1 - inst.components.finiteuses:GetPercent())
+			dmg = Remap(dmg, 0, MODTUNING.SABER_KENDOSTICK_DAMAGE, MODTUNING.SABER_KENDOSTICK_DAMAGE, MODTUNING.SABER_KENDOSTICK_DAMAGE * MODTUNING.SABER_KENDOSTICK_DAMAGE_MODIFIER)
+			inst.components.weapon:SetDamage(dmg)
 		end
-	end)
+	end
+	
+	local function onload(inst, data)
+		updatedamage(inst)
+	end
+	
+	local function onequip(inst, owner)
+		updatedamage(inst)
+		owner.AnimState:OverrideSymbol("swap_object", "swap_kendostick", "swap_kendostick")
+		owner.AnimState:Show("ARM_carry")
+		owner.AnimState:Hide("ARM_normal")
+	end
+	
+	local function onunequip(inst, owner)
+		updatedamage(inst)
+		owner.AnimState:Hide("ARM_carry")
+		owner.AnimState:Show("ARM_normal")
+	end
+	
+	inst.OnLoad = onload
+	inst.components.equippable:SetOnEquip(onequip)
+	inst.components.equippable:SetOnUnequip(onunequip)
+	
+	inst.components.weapon:SetOnAttack(updatedamage)
 	
 	inst:AddComponent("finiteuses")
 	inst.components.finiteuses:SetMaxUses(MODTUNING.SABER_KENDOSTICK_USES)
