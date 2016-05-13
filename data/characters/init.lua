@@ -7,6 +7,9 @@ end
 if KnownModIndex:IsModEnabled("workshop-380079744") or KnownModIndex:IsModTempEnabled("workshop-380079744") then
 	Load "data/characters/luffy"
 end
+if KnownModIndex:IsModEnabled("workshop-399803164") or KnownModIndex:IsModTempEnabled("workshop-399803164") then
+	Load "data/characters/rin"
+end
 if KnownModIndex:IsModEnabled("workshop-376244443") or KnownModIndex:IsModTempEnabled("workshop-376244443") then
 	Load "data/characters/saber"
 end

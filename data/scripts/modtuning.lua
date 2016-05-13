@@ -94,6 +94,12 @@ function ModTune(overrides)
 		LUFFY_HAT_TECH = TECH.SCIENCE_ONE,
 		LUFFY_HAT_PERISHTIME = total_day_time * 5,
 		
+		RIN_SUPPORTED_VERSION = "1.3.5",
+		RIN_HEALTH = 100,
+		RIN_HUNGER = 150,
+		RIN_SANITY = 200,
+		RIN_INVENTORY = {"gandr"},
+		
 		SABER_SUPPORTED_VERSION = "1.2.4",
 		SABER_HEALTH = 200,
 		SABER_HUNGER = 150,

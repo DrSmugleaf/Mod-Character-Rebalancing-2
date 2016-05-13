@@ -55,6 +55,16 @@ configuration_options =	{
 		default = true,
 	},
 	{
+		name = "RIN_BALANCED",
+		label = "Tohsaka Rin(P)",
+		hover = "By Silh and Arcade. Latest supported version: 1.3.5",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
+	{
 		name = "SABER_BALANCED",
 		label = "Saber(P)",
 		hover = "By Silh. Latest supported version: 1.2.4",
