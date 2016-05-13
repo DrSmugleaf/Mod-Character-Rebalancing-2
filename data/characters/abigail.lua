@@ -51,23 +51,27 @@ local function balancegalaxysword(inst)
 		return inst
 	end
 	
+	local old_onequip = inst.components.equippable.onequipfn
 	local function onequip(inst, owner)
-	    owner.AnimState:OverrideSymbol("swap_object", "swap_galaxysword", "swap_galaxysword")
-		owner.AnimState:Show("ARM_carry")
-		owner.AnimState:Hide("ARM_normal")
+		if old_onequip ~= nil then
+			old_onequip(inst, owner)
+		end
+		
 		if owner.components ~= nil and owner.components.sanity ~= nil then
 			owner.components.sanity:DoDelta(MODTUNING.ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONEQUIP)
 		end
 	end
 	
+	local old_onunequip = inst.components.equippable.onunequipfn
 	local function onunequip(inst, owner)
-	    owner.AnimState:Hide("ARM_carry")
-		owner.AnimState:Show("ARM_normal")
+		if old_onunequip ~= nil then
+			old_onunequip(inst, owner)
+		end
+		
 		if owner.components ~= nil and owner.components.sanity ~= nil then
 			owner.components.sanity:DoDelta(MODTUNING.ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONUNEQUIP)
 		end
 	end
-
 	
 	local function onattack(weapon, attacker, target)
 		local atkfx = SpawnPrefab("explode_small")

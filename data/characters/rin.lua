@@ -48,7 +48,7 @@ local function balancegandr(inst)
 	
 	local function onattack(inst, attacker, target)
 		if attacker and attacker.components.sanity then
-			attacker.components.sanity:DoDelta(-5)
+			attacker.components.sanity:DoDelta(MODTUNING.RIN_GANDR_PENALTY_SANITY_ONATTACK)
 		end
 	end
 	
@@ -70,19 +70,25 @@ local function balancegandr(inst)
 		end
 	end
 	
+	inst.components.inventoryitem.keepondeath = false
+	
 	inst.components.weapon:SetOnAttack(nil)
 	inst.components.weapon:SetOnProjectileLaunch(onprojectilelaunch)
 end
 
 local function balancerinprojectile(inst)
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
 	local old_onhit = inst.components.projectile.onhit
 	local function onhit(inst, attacker, target)
 		if old_onhit ~= nil then
 			old_onhit(inst, attacker, target)
 		end
 		if target == attacker then
-			target.components.health:DoDelta(45)
-			target.components.sanity:DoDelta(-10)
+			target.components.health:DoDelta(MODTUNING.RIN_GANDR_DAMAGE)
+			target.components.sanity:DoDelta(MODTUNING.RIN_GANDR_PENALTY_SANITY_ONHIT_SELF)
 		end
 	end
 	
