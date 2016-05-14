@@ -48,14 +48,23 @@ local function balancegandr(inst)
 	
 	local function onattack(inst, attacker, target)
 		if attacker and attacker.components.sanity then
-			attacker.components.sanity:DoDelta(MODTUNING.RIN_GANDR_PENALTY_SANITY_ONATTACK)
+			if attacker == target then
+				attacker.components.sanity:DoDelta(MODTUNING.RIN_GANDR_PENALTY_SANITY_ONHIT_SELF)
+			else
+				attacker.components.sanity:DoDelta(MODTUNING.RIN_GANDR_PENALTY_SANITY_ONATTACK)
+			end
 		end
 	end
 	
 	local function onprojectilelaunch(inst, attacker, target)
 		for i = 0,1,0.1 do
 			inst:DoTaskInTime(i, function(inst)
-				if target.components.health:IsDead() then target = attacker end
+				if target.components.health:IsDead() or target == attacker then
+					target = attacker
+					inst.components.weapon:SetDamage(0)
+				else
+					inst.components.weapon:SetDamage(MODTUNING.RIN_GANDR_DAMAGE)
+				end
 				local proj = SpawnPrefab(inst.components.weapon.projectile)
 				if proj then
 					if proj.components.projectile then
@@ -72,27 +81,9 @@ local function balancegandr(inst)
 	
 	inst.components.inventoryitem.keepondeath = false
 	
-	inst.components.weapon:SetOnAttack(nil)
+	inst.components.weapon:SetDamage(MODTUNING.RIN_GANDR_DAMAGE)
+	inst.components.weapon:SetOnAttack(onattack)
 	inst.components.weapon:SetOnProjectileLaunch(onprojectilelaunch)
-end
-
-local function balancerinprojectile(inst)
-	if not TheWorld.ismastersim then
-		return inst
-	end
-	
-	local old_onhit = inst.components.projectile.onhit
-	local function onhit(inst, attacker, target)
-		if old_onhit ~= nil then
-			old_onhit(inst, attacker, target)
-		end
-		if target == attacker then
-			target.components.health:DoDelta(MODTUNING.RIN_GANDR_DAMAGE)
-			target.components.sanity:DoDelta(MODTUNING.RIN_GANDR_PENALTY_SANITY_ONHIT_SELF)
-		end
-	end
-	
-	inst.components.projectile:SetOnHitFn(onhit)
 end
 
 if GetModConfigData("RIN_BALANCED") then
@@ -104,7 +95,6 @@ if GetModConfigData("RIN_BALANCED") then
 		AddSimPostInit(addsimpostinit)
 		AddPrefabPostInit("rin", balancerin)
 		AddPrefabPostInit("gandr", balancegandr)
-		AddPrefabPostInit("rinprojectile", balancerinprojectile)
 	else
 		LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
 	end
