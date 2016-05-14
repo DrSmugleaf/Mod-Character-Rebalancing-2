@@ -83,7 +83,9 @@ function Requirer:__call(name)
 		local fn = searcher(self, name, _M.filters)
 		if type(fn) == "function" then
 			_G.setfenv(fn, self:GetEnvironment())
-			return (load_once and (_G.package.loaded[name] or self.package.loaded[name])) or fn(name)
+			self.package.loaded[name] = (load_once and (_G.package.loaded[name] or self.package.loaded[name])) or fn(name)
+			_G.package.loaded[name] = self.package.loaded[name]
+			return self.package.loaded[name]
 		elseif type(fn) == "string" then
 			table.insert(fail_pieces, fn)
 		end
