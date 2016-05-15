@@ -1,6 +1,6 @@
 LogHelper = Load "data/scripts/loghelper"
 ModifyCharacter = Load "data/scripts/modifycharacter"
 ModTuning = Load "data/scripts/modtuning"
-Recipe = Load "data/scripts/recipe"
+ModRecipe = Load "data/scripts/modrecipe"
 RemoveEvent = Load "data/scripts/removeevent"
 
