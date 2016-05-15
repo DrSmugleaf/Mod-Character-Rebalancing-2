@@ -33,7 +33,7 @@ local function balancecharacter(inst)
 		winterinsulation = MODTUNING.CHARACTER_WINTER_INSULATION,
 		summerinsulation = MODTUNING.CHARACTER_SUMMER_INSULATION,
 		
-		levelingfood = {MODTUNING.CHARACTER_LEVELING_FOOD_PREFAB_1 = MODTUNING.CHARACTER_LEVEL_PER_FOOD_PREFAB_1}
+		levelingfood = {MODTUNING.CHARACTER_LEVELING_FOOD_PREFAB_1 = MODTUNING.CHARACTER_LEVEL_PER_FOOD_PREFAB_1},
 	}
 	
 	ModifyCharacter:ModifyStats(inst, characterstats)

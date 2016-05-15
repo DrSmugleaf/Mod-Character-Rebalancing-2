@@ -162,6 +162,8 @@ function ModTune(overrides)
 		
 		TAMAMO_SUPPORTED_VERSION = "1.3.5",
 		TAMAMO_IGNORES_SPOILAGE = false,
+		
+		ZORO_SUPPORTED_VERSION = "1.1.19",
 	}
 end
 

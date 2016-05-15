@@ -94,4 +94,14 @@ configuration_options =	{
 					},
 		default = true,
 	},
+	{
+		name = "ZORO_BALANCED",
+		label = "Zoro(P)",
+		hover = "By Silh and Arcade. Latest supported version: 1.1.19",
+		options = 	{
+						{description = "Balanced", data = true},
+						{description = "Ignored", data = false},
+					},
+		default = true,
+	},
 }

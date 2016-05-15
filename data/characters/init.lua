@@ -19,3 +19,6 @@ end
 if KnownModIndex:IsModEnabled("workshop-399799824") or KnownModIndex:IsModTempEnabled("workshop-399799824") then
 	Load "data/characters/tamamo"
 end
+if KnownModIndex:IsModEnabled("workshop-409184357") or KnownModIndex:IsModTempEnabled("workshop-409184357") then
+	Load "data/characters/zoro"
+end
