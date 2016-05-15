@@ -1,3 +1,0 @@
-To modify a recipe and have it remain in the same tab:
-
-AllRecipes["ITEMPREFAB"].ingredients = {Ingredient("INGREDIENTPREFAB", AMOUNT)}

@@ -57,7 +57,9 @@ local function balancetamamo(inst)
 			self.inst.components.talker:Say("I'm already wearing something")
 			return false
 		end
-		return old_Equip(self, item, old_to_active)
+		if old_Equip ~= nil then
+			old_Equip(self, item, old_to_active)
+		end
 	end
 end
 
