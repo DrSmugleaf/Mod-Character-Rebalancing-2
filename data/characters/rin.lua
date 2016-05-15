@@ -49,10 +49,9 @@ local function balancerin(inst)
 	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.RIN_INVENTORY)
 	
 	inst:RemoveTag("ancient_builder")
-	inst:AddTag("rin")
-	
 	inst:RemoveTag("bookbuilder")
 	inst:RemoveTag("reader")
+	inst:AddTag("rin")
 end
 
 local function balancegandr(inst)
@@ -99,6 +98,8 @@ local function balancegandr(inst)
 	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	inst.components.inventoryitem.keepondeath = false
+	
+	inst.components.equippable.dapperness = MODTUNING.RIN_GANDR_DAPPERNESS
 	
 	inst.components.weapon:SetDamage(MODTUNING.RIN_GANDR_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
