@@ -1,7 +1,17 @@
 local info = KnownModIndex:LoadModInfo("workshop-399803164")
 
 local function addsimpostinit(inst)
-	ModRecipe:ChangeRecipe("gandr", MODTUNING.RIN_GANDR_INGREDIENTS, MODTUNING.RIN_GANDR_RECIPETAB, MODTUNING.RIN_GANDR_TECH, nil, nil, nil, nil, "rin", "images/inventoryimages/gandr.xml", "gandr.tex")
+	ModRecipe:ChangeRecipe("gandr", MODTUNING.RIN_GANDR_INGREDIENTS, MODTUNING.RIN_GANDR_RECIPETAB, MODTUNING.RIN_GANDR_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/gandr.xml", "gandr.tex")
+	
+	ModRecipe:ChangeRecipe("formredgem", MODTUNING.RIN_FORMREDGEM_INGREDIENTS, MODTUNING.RIN_FORMREDGEM_RECIPETAB, MODTUNING.RIN_FORMREDGEM_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formredgem.xml", "formredgem.tex")
+	ModRecipe:ChangeRecipe("formbluegem", MODTUNING.RIN_FORMBLUEGEM_INGREDIENTS, MODTUNING.RIN_FORMBLUEGEM_RECIPETAB, MODTUNING.RIN_FORMBLUEGEM_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formbluegem.xml", "formbluegem.tex")
+	ModRecipe:ChangeRecipe("formpurplegem", MODTUNING.RIN_FORMPURPLEGEM_INGREDIENTS, MODTUNING.RIN_FORMPURPLEGEM_RECIPETAB, MODTUNING.RIN_FORMPURPLEGEM_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formpurplegem.xml", "formpurplegem.tex")
+	ModRecipe:ChangeRecipe("formyellowgem", MODTUNING.RIN_FORMYELLOWGEM_INGREDIENTS, MODTUNING.RIN_FORMYELLOWGEM_RECIPETAB, MODTUNING.RIN_FORMYELLOWGEM_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formyellowgem.xml", "formyellowgem.tex")
+	ModRecipe:ChangeRecipe("formorangegem", MODTUNING.RIN_FORMORANGEGEM_INGREDIENTS, MODTUNING.RIN_FORMORANGEGEM_RECIPETAB, MODTUNING.RIN_FORMORANGEGEM_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formorangegem.xml", "formorangegem.tex")
+	ModRecipe:ChangeRecipe("formgreengem", MODTUNING.RIN_FORMGREENGEM_INGREDIENTS, MODTUNING.RIN_FORMGREENGEM_RECIPETAB, MODTUNING.RIN_FORMGREENGEM_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formgreengem.xml", "fromgreengem.tex")
+	ModRecipe:ChangeRecipe("formthulecite", MODTUNING.RIN_FORMTHULECITE_INGREDIENTS, MODTUNING.RIN_FORMTHULECITE_RECIPETAB, MODTUNING.RIN_FORMTHULECITE_TECH, nil, nil, nil, 2, "rin", "images/inventoryimages/formthulecite.xml", "formthulecite.tex")
+	
+	STRINGS.RECIPE_DESC.GANDR = STRINGS.CHARACTERS.GENERIC.DESCRIBE.GANDR
 end
 
 local function balancerin(inst)
@@ -38,6 +48,7 @@ local function balancerin(inst)
 	ModifyCharacter:ModifyStats(inst, rinstats)
 	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.RIN_INVENTORY)
 	
+	inst:RemoveTag("ancient_builder")
 	inst:AddTag("rin")
 	
 	inst:RemoveTag("bookbuilder")

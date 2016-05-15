@@ -1,6 +1,5 @@
 local info = KnownModIndex:LoadModInfo("workshop-399799824")
 
-
 local function addsimpostinit(inst)
 end
 

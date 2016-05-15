@@ -1,6 +1,5 @@
 local info = KnownModIndex:LoadModInfo("workshop-376244443")
 
-
 local function addsimpostinit(inst)
 	AddRecipe("kendostick", MODTUNING.SABER_KENDOSTICK_INGREDIENTS, MODTUNING.SABER_KENDOSTICK_RECIPETAB, MODTUNING.SABER_KENDOSTICK_TECH, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 end
