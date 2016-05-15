@@ -1,6 +1,7 @@
 local info = KnownModIndex:LoadModInfo("workshop-399803164")
 
 local function addsimpostinit(inst)
+	AddRecipe("gandr", MODTUNING.RIN_GANDR_INGREDIENTS, MODTUNING.RIN_GANDR_RECIPETAB, MODTUNING.RIN_GANDR_TECH, nil, nil, nil, nil, "rin", "images/inventoryimages/gandr.xml", "gandr.tex")
 end
 
 local function balancerin(inst)
@@ -36,6 +37,8 @@ local function balancerin(inst)
 	
 	ModifyCharacter:ModifyStats(inst, rinstats)
 	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.RIN_INVENTORY)
+	
+	inst:AddTag("rin")
 	
 	inst:RemoveTag("bookbuilder")
 	inst:RemoveTag("reader")
