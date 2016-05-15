@@ -1,4 +1,4 @@
-local LogHelper = Class(function(self, inst)
+LogHelper = Class(function(self, inst)
 	self.inst = inst
 end)
 

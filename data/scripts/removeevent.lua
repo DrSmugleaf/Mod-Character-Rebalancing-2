@@ -1,4 +1,4 @@
-local RemoveEvent = Class(function(self, inst)
+RemoveEvent = Class(function(self, inst)
 	self.inst = inst
 end)
 

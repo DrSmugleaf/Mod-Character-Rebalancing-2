@@ -99,7 +99,7 @@ function ModTune(overrides)
 		RIN_HUNGER = 150,
 		RIN_SANITY = 200,
 		RIN_INVENTORY = {},
-		RIN_GANDR_INGREDIENTS = {Ingredient("purplegem", 1), Ingredient("orangegem", 1), Ingredient("yellowgem", 1), Ingredient("greengem", 1)},
+		RIN_GANDR_INGREDIENTS = {Ingredient("orangegem", 1), Ingredient("yellowgem", 1), Ingredient("greengem", 1)},
 		RIN_GANDR_RECIPETAB = RECIPETABS.MAGIC,
 		RIN_GANDR_TECH = TECH.MAGIC_THREE,
 		RIN_GANDR_USES = 30,

@@ -1,4 +1,4 @@
-local ModifyCharacter = Class(function(self, inst)
+ModifyCharacter = Class(function(self, inst)
 	self.inst = inst
 end)
 
