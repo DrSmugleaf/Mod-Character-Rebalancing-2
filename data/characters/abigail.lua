@@ -93,7 +93,7 @@ local function balancegalaxysword(inst)
 	inst:AddComponent("finiteuses")
 	inst.components.finiteuses:SetMaxUses(MODTUNING.ABIGAIL_GALAXYSWORD_USES)
 	inst.components.finiteuses:SetUses(MODTUNING.ABIGAIL_GALAXYSWORD_USES)
-	inst.components.finiteuses:SetOnFinished(inst.remove)
+	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	inst.components.inventoryitem.keepondeath = false
 	
@@ -103,8 +103,6 @@ local function balancegalaxysword(inst)
 	inst.components.equippable.walkspeedmult = MODTUNING.ABIGAIL_GALAXYSWORD_SPEED_MULT
 	
 	MakeHauntableLaunch(inst)
-	
-	return inst
 end
 
 local function balancepanflute(inst)

@@ -51,6 +51,7 @@ local function balancetamamo(inst)
 			return false
 		end
 	end
+	
 	local old_Equip = inst.components.inventory.Equip
 	inst.components.inventory.Equip = function(self, item, old_to_active)
 		if IsChestArmor(item) then

@@ -58,17 +58,22 @@ local function balancekendostick(inst)
 		updatedamage(inst)
 	end
 	
+	local old_onequip = inst.components.equippable.onequipfn
 	local function onequip(inst, owner)
 		updatedamage(inst)
-		owner.AnimState:OverrideSymbol("swap_object", "swap_kendostick", "swap_kendostick")
-		owner.AnimState:Show("ARM_carry")
-		owner.AnimState:Hide("ARM_normal")
+		
+		if old_onequip ~= nil then
+			old_onequip(inst, owner)
+		end
 	end
 	
+	local old_onunequip = inst.components.equippable.onunequipfn
 	local function onunequip(inst, owner)
 		updatedamage(inst)
-		owner.AnimState:Hide("ARM_carry")
-		owner.AnimState:Show("ARM_normal")
+		
+		if old_onunequip ~= nil then
+			old_onunequip(inst, owner)
+		end
 	end
 	
 	inst.OnLoad = onload
@@ -83,8 +88,6 @@ local function balancekendostick(inst)
 	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	MakeHauntableLaunch(inst)
-	
-	return inst
 end
 
 if GetModConfigData("SABER_BALANCED") then

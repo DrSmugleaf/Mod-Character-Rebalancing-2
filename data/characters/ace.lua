@@ -69,12 +69,13 @@ local function balanceacefire(inst)
 		end
 	end
 	
+	local old_onequip = inst.components.equippable.onequipfn
 	local function onequip(inst, owner)
 		inst.components.burnable:Ignite()
 		
-		owner.AnimState:OverrideSymbol("swap_object", "swap_acefire", "swap_acefire")
-		owner.AnimState:Show("ARM_carry")
-		owner.AnimState:Hide("ARM_normal")
+		if old_onequip ~= nil then
+			old_onequip(inst, owner)
+		end
 		
 		if inst.fires == nil then
 			local fire_fx = nil
@@ -95,6 +96,7 @@ local function balanceacefire(inst)
 		end
 	end
 	
+	local old_onunequip = inst.components.equippable.onunequipfn
 	local function onunequip(inst, owner)
 		local skin_build = inst:GetSkinBuild()
 		if skin_build ~= nil then
@@ -111,8 +113,9 @@ local function balanceacefire(inst)
 		
 		inst.components.burnable:Extinguish()
 		
-		owner.AnimState:Hide("ARM_carry")
-		owner.AnimState:Show("ARM_normal")
+		if old_onunequip ~= nil then
+			old_onunequip(inst, owner)
+		end
 	end
 	
 	local function onpocket(inst, owner)
@@ -146,8 +149,6 @@ local function balanceacefire(inst)
 	inst.components.burnable.fxprefab = nil
 	
 	MakeHauntableLaunch(inst)
-	
-	return inst
 end
 
 local function balanceacehat(inst)

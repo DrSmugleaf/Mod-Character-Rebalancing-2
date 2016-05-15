@@ -59,7 +59,7 @@ local function balancegandr(inst)
 	local function onprojectilelaunch(inst, attacker, target)
 		for i = 0,1,0.1 do
 			inst:DoTaskInTime(i, function(inst)
-				if target.components.health:IsDead() or target == attacker then
+				if target == attacker or target.components.health:IsDead() then
 					target = attacker
 					inst.components.weapon:SetDamage(0)
 				else
@@ -79,11 +79,18 @@ local function balancegandr(inst)
 		end
 	end
 	
+	inst:AddComponent("finiteuses")
+	inst.components.finiteuses:SetMaxUses(MODTUNING.RIN_GANDR_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.RIN_GANDR_USES)
+	inst.components.finiteuses:SetOnFinished(inst.Remove)
+	
 	inst.components.inventoryitem.keepondeath = false
 	
 	inst.components.weapon:SetDamage(MODTUNING.RIN_GANDR_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
 	inst.components.weapon:SetOnProjectileLaunch(onprojectilelaunch)
+	
+	MakeHauntableLaunch(inst)
 end
 
 if GetModConfigData("RIN_BALANCED") then
