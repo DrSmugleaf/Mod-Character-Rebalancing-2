@@ -8,6 +8,7 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.current)
 	
 	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
+	inst.components.health:SetAbsorptionAmountFromPlayer(stats.playerabsorb or inst.components.health.playerabsorb)
 	
 	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
 	inst.components.eater.ignoresspoilage = stats.ignoresspoilage or inst.components.eater.ignoresspoilage

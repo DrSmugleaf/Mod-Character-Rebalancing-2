@@ -1,3 +1,4 @@
+local MODTUNING = MODTUNING.TAMAMO
 local info = KnownModIndex:LoadModInfo("workshop-399799824")
 
 local function addsimpostinit(inst)
@@ -9,29 +10,30 @@ local function balancetamamo(inst)
 	end
 	
 	local tamamostats =	{
-		health = MODTUNING.TAMAMO_HEALTH,
-		hunger = MODTUNING.TAMAMO_HUNGER,
-		sanity = MODTUNING.TAMAMO_SANITY,
+		health = MODTUNING.HEALTH,
+		hunger = MODTUNING.HUNGER,
+		sanity = MODTUNING.SANITY,
 		
-		absorb = MODTUNING.TAMAMO_ABSORPTION,
+		absorb = MODTUNING.ABSORB,
+		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
-		ignoresspoilage = MODTUNING.TAMAMO_IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.TAMAMO_STRONG_STOMACH,
-		hungerkillrate = MODTUNING.TAMAMO_HUNGER_KILL_RATE,
-		hungerrate = MODTUNING.TAMAMO_HUNGER_RATE,
+		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.STRONG_STOMACH,
+		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.HUNGER_RATE,
 		
-		dapperness = MODTUNING.TAMAMO_DAPPERNESS,
-		dapperness_mult = MODTUNING.TAMAMO_DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.TAMAMO_NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.TAMAMO_NIGHT_DRAIN_MULT,
+		dapperness = MODTUNING.DAPPERNESS,
+		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
+		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
+		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
 		
-		damage = MODTUNING.TAMAMO_DAMAGE,
+		damage = MODTUNING.DAMAGE,
 		
-		walkspeed = MODTUNING.TAMAMO_WALK_SPEED,
-		runspeed = MODTUNING.TAMAMO_RUN_SPEED,
+		walkspeed = MODTUNING.WALK_SPEED,
+		runspeed = MODTUNING.RUN_SPEED,
 		
-		winterinsulation = MODTUNING.TAMAMO_WINTER_INSULATION,
-		summerinsulation = MODTUNING.TAMAMO_SUMMER_INSULATION,
+		winterinsulation = MODTUNING.WINTER_INSULATION,
+		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}
 	
 	ModifyCharacter:ModifyStats(inst, tamamostats)
@@ -65,8 +67,8 @@ end
 
 if GetModConfigData("TAMAMO_BALANCED") then
 	if not info.ignoreMCR then
-		if info.version ~= MODTUNING.TAMAMO_SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.TAMAMO_SUPPORTED_VERSION)
+		if info.version ~= MODTUNING.SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)

@@ -1,9 +1,9 @@
+local MODTUNING = MODTUNING.ABIGAIL
 local info = KnownModIndex:LoadModInfo("workshop-647062183")
 
 local function addsimpostinit(inst)
-	AllRecipes["galaxysword"].level = MODTUNING.ABIGAIL_GALAXYSWORD_TECH
-	AllRecipes["sdpan_flute"].ingredients = MODTUNING.ABIGAIL_PANFLUTE_INGREDIENTS
-	AllRecipes["sdpan_flute"].level = MODTUNING.ABIGAIL_PANFLUTE_TECH
+	ModRecipe:ChangeRecipe("galaxysword", MODTUNING.GALAXYSWORD_INGREDIENTS, MODTUNING.GALAXYSWORD_RECIPETAB, MODTUNING.GALAXYSWORD_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/galaxysword.xml", "galaxysword.tex")
+	ModRecipe:ChangeRecipe("sdpan_flute", MODTUNING.PANFLUTE_INGREDIENTS, MODTUNING.PANFLUTE_RECIPETAB, MODTUNING.PANFLUTE_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/sdpan_flute.xml", "sdpan_flute.tex")
 end
 
 local function balanceabigail(inst)
@@ -12,37 +12,38 @@ local function balanceabigail(inst)
 	end
 	
 	local abigailstats =	{
-		health = MODTUNING.ABIGAIL_HEALTH,
-		hunger = MODTUNING.ABIGAIL_HUNGER,
-		sanity = MODTUNING.ABIGAIL_SANITY,
+		health = MODTUNING.HEALTH,
+		hunger = MODTUNING.HUNGER,
+		sanity = MODTUNING.SANITY,
 		
-		absorb = MODTUNING.ABIGAIL_ABSORPTION,
+		absorb = MODTUNING.ABSORB,
+		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
-		ignoresspoilage = MODTUNING.ABIGAIL_IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.ABIGAIL_STRONG_STOMACH,
-		hungerkillrate = MODTUNING.ABIGAIL_HUNGER_KILL_RATE,
-		hungerrate = MODTUNING.ABIGAIL_HUNGER_RATE,
+		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.STRONG_STOMACH,
+		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.HUNGER_RATE,
 		
-		dapperness = MODTUNING.ABIGAIL_DAPPERNESS,
-		dapperness_mult = MODTUNING.ABIGAIL_DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.ABIGAIL_NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.ABIGAIL_NIGHT_DRAIN_MULT,
+		dapperness = MODTUNING.DAPPERNESS,
+		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
+		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
+		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
 		
-		damage = MODTUNING.ABIGAIL_DAMAGE,
+		damage = MODTUNING.DAMAGE,
 		
-		walkspeed = MODTUNING.ABIGAIL_WALK_SPEED,
-		runspeed = MODTUNING.ABIGAIL_RUN_SPEED,
+		walkspeed = MODTUNING.WALK_SPEED,
+		runspeed = MODTUNING.RUN_SPEED,
 		
-		winterinsulation = MODTUNING.ABIGAIL_WINTER_INSULATION,
-		summerinsulation = MODTUNING.ABIGAIL_SUMMER_INSULATION,
+		winterinsulation = MODTUNING.WINTER_INSULATION,
+		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}
 	
-	local start_inv = {"pumpkin_seeds", "pumpkin_seeds", "pumpkin_seeds"}
-	
 	ModifyCharacter:ModifyStats(inst, abigailstats)
-	ModifyCharacter:ChangeStartingInventory(inst, start_inv)
+	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.INVENTORY)
 	
 	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
+	
+	inst:AddTag("sdabigail")
 end
 
 local function balancegalaxysword(inst)
@@ -57,7 +58,7 @@ local function balancegalaxysword(inst)
 		end
 		
 		if owner.components ~= nil and owner.components.sanity ~= nil then
-			owner.components.sanity:DoDelta(MODTUNING.ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONEQUIP)
+			owner.components.sanity:DoDelta(MODTUNING.GALAXYSWORD_PENALTY_SANITY_ONEQUIP)
 		end
 	end
 	
@@ -68,38 +69,37 @@ local function balancegalaxysword(inst)
 		end
 		
 		if owner.components ~= nil and owner.components.sanity ~= nil then
-			owner.components.sanity:DoDelta(MODTUNING.ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONUNEQUIP)
+			owner.components.sanity:DoDelta(MODTUNING.GALAXYSWORD_PENALTY_SANITY_ONUNEQUIP)
 		end
 	end
 	
+	local old_onattack = inst.components.weapon.onattack
 	local function onattack(weapon, attacker, target)
-		local atkfx = SpawnPrefab("explode_small")
-		if atkfx then
-			local follower = atkfx.entity:AddFollower()
-			follower:FollowSymbol(target.GUID, target.components.combat.hiteffectsymbol, 0, 0, 0 )
+		if old_onattack ~= nil then
+			old_onattack(weapon, attacker, target)
 		end
 		
 		if attacker.components ~= nil and attacker.components.sanity ~= nil then
-			attacker.components.sanity:DoDelta(MODTUNING.ABIGAIL_GALAXYSWORD_PENALTY_SANITY_ONATTACK)
+			attacker.components.sanity:DoDelta(MODTUNING.GALAXYSWORD_PENALTY_SANITY_ONATTACK)
 		end
 	end
 	
 	inst:AddTag("shadow")
 	
-	inst.components.weapon:SetDamage(MODTUNING.ABIGAIL_GALAXYSWORD_DAMAGE)
+	inst.components.weapon:SetDamage(MODTUNING.GALAXYSWORD_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
 	
 	inst:AddComponent("finiteuses")
-	inst.components.finiteuses:SetMaxUses(MODTUNING.ABIGAIL_GALAXYSWORD_USES)
-	inst.components.finiteuses:SetUses(MODTUNING.ABIGAIL_GALAXYSWORD_USES)
+	inst.components.finiteuses:SetMaxUses(MODTUNING.GALAXYSWORD_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.GALAXYSWORD_USES)
 	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	inst.components.inventoryitem.keepondeath = false
 	
 	inst.components.equippable:SetOnEquip(onequip)
 	inst.components.equippable:SetOnUnequip(onunequip)
-	inst.components.equippable.dapperness = MODTUNING.ABIGAIL_GALAXYSWORD_DAPPERNESS
-	inst.components.equippable.walkspeedmult = MODTUNING.ABIGAIL_GALAXYSWORD_SPEED_MULT
+	inst.components.equippable.dapperness = MODTUNING.GALAXYSWORD_DAPPERNESS
+	inst.components.equippable.walkspeedmult = MODTUNING.GALAXYSWORD_SPEED_MULT
 	
 	MakeHauntableLaunch(inst)
 end
@@ -109,8 +109,8 @@ local function balancepanflute(inst)
 		return inst
 	end
 	
-	inst.components.finiteuses:SetMaxUses(MODTUNING.ABIGAIL_PANFLUTE_USES)
-	inst.components.finiteuses:SetUses(MODTUNING.ABIGAIL_PANFLUTE_USES)
+	inst.components.finiteuses:SetMaxUses(MODTUNING.PANFLUTE_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.PANFLUTE_USES)
 end
 
 local function balancequartz(inst)
@@ -118,9 +118,9 @@ local function balancequartz(inst)
 		return inst
 	end
 	
-	inst.components.edible.healthvalue = MODTUNING.ABIGAIL_QUARTZ_HEALTHVALUE
-	inst.components.edible.hungervalue = MODTUNING.ABIGAIL_QUARTZ_HUNGERVALUE
-	inst.components.edible.sanityvalue = MODTUNING.ABIGAIL_QUARTZ_SANITYVALUE
+	inst.components.edible.healthvalue = MODTUNING.QUARTZ_HEALTHVALUE
+	inst.components.edible.hungervalue = MODTUNING.QUARTZ_HUNGERVALUE
+	inst.components.edible.sanityvalue = MODTUNING.QUARTZ_SANITYVALUE
 	
 	inst:RemoveComponent("tradable")
 	
@@ -160,8 +160,8 @@ end
 
 if GetModConfigData("ABIGAIL_BALANCED") then
 	if not info.ignoreMCR then
-		if info.version ~= MODTUNING.ABIGAIL_SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ABIGAIL_SUPPORTED_VERSION)
+		if info.version ~= MODTUNING.SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)

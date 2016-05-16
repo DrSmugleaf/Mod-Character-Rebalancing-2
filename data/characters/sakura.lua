@@ -1,3 +1,4 @@
+local MODTUNING = MODTUNING.SAKURA
 local info = KnownModIndex:LoadModInfo("workshop-384048428")
 
 local function addsimpostinit(inst)
@@ -9,29 +10,30 @@ local function balancesakura(inst)
 	end
 	
 	local sakurastats =	{
-		health = MODTUNING.SAKURA_HEALTH,
-		hunger = MODTUNING.SAKURA_HUNGER,
-		sanity = MODTUNING.SAKURA_SANITY,
+		health = MODTUNING.HEALTH,
+		hunger = MODTUNING.HUNGER,
+		sanity = MODTUNING.SANITY,
 		
-		absorb = MODTUNING.SAKURA_ABSORPTION,
+		absorb = MODTUNING.ABSORB,
+		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
-		ignoresspoilage = MODTUNING.SAKURA_IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.SAKURA_STRONG_STOMACH,
-		hungerkillrate = MODTUNING.SAKURA_HUNGER_KILL_RATE,
-		hungerrate = MODTUNING.SAKURA_HUNGER_RATE,
+		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.STRONG_STOMACH,
+		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.HUNGER_RATE,
 		
-		dapperness = MODTUNING.SAKURA_DAPPERNESS,
-		dapperness_mult = MODTUNING.SAKURA_DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.SAKURA_NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.SAKURA_NIGHT_DRAIN_MULT,
+		dapperness = MODTUNING.DAPPERNESS,
+		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
+		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
+		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
 		
-		damage = MODTUNING.SAKURA_DAMAGE,
+		damage = MODTUNING.DAMAGE,
 		
-		walkspeed = MODTUNING.SAKURA_WALK_SPEED,
-		runspeed = MODTUNING.SAKURA_RUN_SPEED,
+		walkspeed = MODTUNING.WALK_SPEED,
+		runspeed = MODTUNING.RUN_SPEED,
 		
-		winterinsulation = MODTUNING.SAKURA_WINTER_INSULATION,
-		summerinsulation = MODTUNING.SAKURA_SUMMER_INSULATION,
+		winterinsulation = MODTUNING.WINTER_INSULATION,
+		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}
 	
 	ModifyCharacter:ModifyStats(inst, sakurastats)
@@ -50,27 +52,27 @@ local function balancesakura(inst)
 	end
 	
 	if TheNet:GetPVPEnabled() then
-		inst.components.sanityaura.aura = MODTUNING.SAKURA_SANITY_AURA_PVP
+		inst.components.sanityaura.aura = MODTUNING.SANITY_AURA_PVP
 	else
-		inst.components.sanityaura.aura = MODTUNING.SAKURA_SANITY_AURA_NOPVP
+		inst.components.sanityaura.aura = MODTUNING.SANITY_AURA_NOPVP
 	end
 	
 	local function updatestats()
 		if TheWorld.state.phase == "day" then
-			inst.components.combat.damagemultiplier = MODTUNING.SAKURA_DAMAGE_DAY
+			inst.components.combat.damagemultiplier = MODTUNING.DAMAGE_DAY
 			
-			inst.components.locomotor.walkspeed = TUNING.WILSON_WALK_SPEED * MODTUNING.SAKURA_WALK_SPEED_DAY
-			inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED * MODTUNING.SAKURA_RUN_SPEED_DAY
+			inst.components.locomotor.walkspeed = TUNING.WILSON_WALK_SPEED * MODTUNING.WALK_SPEED_DAY
+			inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED * MODTUNING.RUN_SPEED_DAY
 		elseif TheWorld.state.phase == "dusk" then
-			inst.components.combat.damagemultiplier = MODTUNING.SAKURA_DAMAGE_DUSK
+			inst.components.combat.damagemultiplier = MODTUNING.DAMAGE_DUSK
 			
-			inst.components.locomotor.walkspeed = TUNING.WILSON_WALK_SPEED * MODTUNING.SAKURA_WALK_SPEED_DUSK
-			inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED * MODTUNING.SAKURA_RUN_SPEED_DUSK
+			inst.components.locomotor.walkspeed = TUNING.WILSON_WALK_SPEED * MODTUNING.WALK_SPEED_DUSK
+			inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED * MODTUNING.RUN_SPEED_DUSK
 		elseif TheWorld.state.phase == "night" then
-			inst.components.combat.damagemultiplier = MODTUNING.SAKURA_DAMAGE_NIGHT
+			inst.components.combat.damagemultiplier = MODTUNING.DAMAGE_NIGHT
 			
-			inst.components.locomotor.walkspeed = TUNING.WILSON_WALK_SPEED * MODTUNING.SAKURA_WALK_SPEED_NIGHT
-			inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED * MODTUNING.SAKURA_RUN_SPEED_NIGHT
+			inst.components.locomotor.walkspeed = TUNING.WILSON_WALK_SPEED * MODTUNING.WALK_SPEED_NIGHT
+			inst.components.locomotor.runspeed = TUNING.WILSON_RUN_SPEED * MODTUNING.RUN_SPEED_NIGHT
 		end
 	end
 	
@@ -82,8 +84,8 @@ end
 
 if GetModConfigData("SAKURA_BALANCED") then
 	if not info.ignoreMCR then
-		if info.version ~= MODTUNING.SAKURA_SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SAKURA_SUPPORTED_VERSION)
+		if info.version ~= MODTUNING.SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)

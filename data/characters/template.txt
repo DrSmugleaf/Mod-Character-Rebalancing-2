@@ -1,3 +1,4 @@
+local MODTUNING = MODTUNING.CHARACTER
 local info = KnownModIndex:LoadModInfo("workshop-#")
 
 local function addsimpostinit(inst)
@@ -9,31 +10,32 @@ local function balancecharacter(inst)
 	end
 	
 	local characterstats =	{
-		health = MODTUNING.CHARACTER_HEALTH,
-		hunger = MODTUNING.CHARACTER_HUNGER,
-		sanity = MODTUNING.CHARACTER_SANITY,
+		health = MODTUNING.HEALTH,
+		hunger = MODTUNING.HUNGER,
+		sanity = MODTUNING.SANITY,
 		
-		absorb = MODTUNING.CHARACTER_ABSORPTION,
+		absorb = MODTUNING.ABSORB,
+		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
-		ignoresspoilage = MODTUNING.CHARACTER_IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.CHARACTER_STRONG_STOMACH,
-		hungerkillrate = MODTUNING.CHARACTER_HUNGER_KILL_RATE,
-		hungerrate = MODTUNING.CHARACTER_HUNGER_RATE,
+		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.STRONG_STOMACH,
+		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.HUNGER_RATE,
 		
-		dapperness = MODTUNING.CHARACTER_DAPPERNESS,
-		dapperness_mult = MODTUNING.CHARACTER_DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.CHARACTER_NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.CHARACTER_NIGHT_DRAIN_MULT,
+		dapperness = MODTUNING.DAPPERNESS,
+		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
+		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
+		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
 		
-		damage = MODTUNING.CHARACTER_DAMAGE,
+		damage = MODTUNING.DAMAGE,
 		
-		walkspeed = MODTUNING.CHARACTER_WALK_SPEED,
-		runspeed = MODTUNING.CHARACTER_RUN_SPEED,
+		walkspeed = MODTUNING.WALK_SPEED,
+		runspeed = MODTUNING.RUN_SPEED,
 		
-		winterinsulation = MODTUNING.CHARACTER_WINTER_INSULATION,
-		summerinsulation = MODTUNING.CHARACTER_SUMMER_INSULATION,
+		winterinsulation = MODTUNING.WINTER_INSULATION,
+		summerinsulation = MODTUNING.SUMMER_INSULATION,
 		
-		levelingfood = {MODTUNING.CHARACTER_LEVELING_FOOD_PREFAB_1 = MODTUNING.CHARACTER_LEVEL_PER_FOOD_PREFAB_1},
+		levelingfood = {MODTUNING.LEVELING_FOOD_PREFAB_1 = MODTUNING.LEVEL_PER_FOOD_PREFAB_1},
 	}
 	
 	ModifyCharacter:ModifyStats(inst, characterstats)
@@ -43,8 +45,8 @@ end
 
 if GetModConfigData("CHARACTER_BALANCED") then
 	if not info.ignoreMCR then
-		if info.version ~= MODTUNING.CHARACTER_SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.CHARACTER_SUPPORTED_VERSION)
+		if info.version ~= MODTUNING.SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)

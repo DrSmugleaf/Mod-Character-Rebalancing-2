@@ -1,8 +1,9 @@
+local MODTUNING = MODTUNING.ACE
 local info = KnownModIndex:LoadModInfo("workshop-388109833")
 
 local function addsimpostinit(inst)
-	AddRecipe("acefire", MODTUNING.ACE_FIRE_INGREDIENTS, MODTUNING.ACE_FIRE_RECIPETAB, MODTUNING.ACE_FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
-	AddRecipe("acehat", MODTUNING.ACE_HAT_INGREDIENTS, MODTUNING.ACE_HAT_RECIPETAB, MODTUNING.ACE_HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
+	ModRecipe:ChangeRecipe("acefire", MODTUNING.FIRE_INGREDIENTS, MODTUNING.FIRE_RECIPETAB, MODTUNING.FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
+	ModRecipe:ChangeRecipe("acehat", MODTUNING.HAT_INGREDIENTS, MODTUNING.HAT_RECIPETAB, MODTUNING.HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
 end
 
 local function balanceace(inst)
@@ -11,29 +12,30 @@ local function balanceace(inst)
 	end
 	
 	local acestats =	{
-		health = MODTUNING.ACE_HEALTH,
-		hunger = MODTUNING.ACE_HUNGER,
-		sanity = MODTUNING.ACE_SANITY,
+		health = MODTUNING.HEALTH,
+		hunger = MODTUNING.HUNGER,
+		sanity = MODTUNING.SANITY,
 		
-		absorb = MODTUNING.ACE_ABSORPTION,
+		absorb = MODTUNING.ABSORB,
+		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
-		ignoresspoilage = MODTUNING.ACE_IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.ACE_STRONG_STOMACH,
-		hungerkillrate = MODTUNING.ACE_HUNGER_KILL_RATE,
-		hungerrate = MODTUNING.ACE_HUNGER_RATE,
+		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.STRONG_STOMACH,
+		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.HUNGER_RATE,
 		
-		dapperness = MODTUNING.ACE_DAPPERNESS,
-		dapperness_mult = MODTUNING.ACE_DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.ACE_NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.ACE_NIGHT_DRAIN_MULT,
+		dapperness = MODTUNING.DAPPERNESS,
+		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
+		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
+		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
 		
-		damage = MODTUNING.ACE_DAMAGE,
+		damage = MODTUNING.DAMAGE,
 		
-		walkspeed = MODTUNING.ACE_WALK_SPEED,
-		runspeed = MODTUNING.ACE_RUN_SPEED,
+		walkspeed = MODTUNING.WALK_SPEED,
+		runspeed = MODTUNING.RUN_SPEED,
 		
-		winterinsulation = MODTUNING.ACE_WINTER_INSULATION,
-		summerinsulation = MODTUNING.ACE_SUMMER_INSULATION,
+		winterinsulation = MODTUNING.WINTER_INSULATION,
+		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}
 	
 	ModifyCharacter:ModifyStats(inst, acestats)
@@ -44,7 +46,7 @@ local function balanceace(inst)
 		inst.components.burnable:Ignite(nil, attacker)
 	end)
 	
-	inst.components.temperature.mintemp = MODTUNING.ACE_MIN_TEMP
+	inst.components.temperature.mintemp = MODTUNING.MIN_TEMP
 	
 	inst.Light:Enable(false)
 	inst:ListenForEvent("ms_respawnedfromghost", function(inst)
@@ -65,7 +67,7 @@ local function balanceacefire(inst)
 		end
 		
 		if attacker.components ~= nil and attacker.components.sanity ~= nil then
-			attacker.components.sanity:DoDelta(MODTUNING.ACE_FIRE_PENALTY_SANITY_ONATTACK)
+			attacker.components.sanity:DoDelta(MODTUNING.FIRE_PENALTY_SANITY_ONATTACK)
 		end
 	end
 	
@@ -125,14 +127,14 @@ local function balanceacefire(inst)
 	inst:AddTag("lighter")
 	inst:AddTag("shadow")
 	
-	inst.components.weapon:SetDamage(MODTUNING.ACE_FIRE_DAMAGE)
+	inst.components.weapon:SetDamage(MODTUNING.FIRE_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
 	
 	inst:AddComponent("lighter")
 	
 	inst:AddComponent("finiteuses")
-	inst.components.finiteuses:SetMaxUses(MODTUNING.ACE_FIRE_USES)
-	inst.components.finiteuses:SetUses(MODTUNING.ACE_FIRE_USES)
+	inst.components.finiteuses:SetMaxUses(MODTUNING.FIRE_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.FIRE_USES)
 	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	inst.components.inventoryitem.keepondeath = false
@@ -156,20 +158,24 @@ local function balanceacehat(inst)
 		return inst
 	end
 	
+	inst.components.dapperness.dapperness = TUNING.DAPPERNESS_TINY
+	
 	inst:AddComponent("fueled")
 	inst.components.fueled.fueltype = FUELTYPE.USAGE
-	inst.components.fueled:InitializeFuelLevel(MODTUNING.ACE_HAT_PERISHTIME)
+	inst.components.fueled:InitializeFuelLevel(MODTUNING.HAT_PERISHTIME)
 	inst.components.fueled:SetDepletedFn(inst.Remove)
 	
 	inst:RemoveComponent("tradable")
 	
 	inst.components.inventoryitem.keepondeath = false
+	
+	MakeHauntableLaunch(inst)
 end
 
 if GetModConfigData("ACE_BALANCED") then
 	if not info.ignoreMCR then
-		if info.version ~= MODTUNING.ACE_SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.ACE_SUPPORTED_VERSION)
+		if info.version ~= MODTUNING.SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)

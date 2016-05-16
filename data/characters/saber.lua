@@ -1,7 +1,8 @@
+local MODTUNING = MODTUNING.SABER
 local info = KnownModIndex:LoadModInfo("workshop-376244443")
 
 local function addsimpostinit(inst)
-	AddRecipe("kendostick", MODTUNING.SABER_KENDOSTICK_INGREDIENTS, MODTUNING.SABER_KENDOSTICK_RECIPETAB, MODTUNING.SABER_KENDOSTICK_TECH, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
+	AddRecipe("kendostick", MODTUNING.KENDOSTICK_INGREDIENTS, MODTUNING.KENDOSTICK_RECIPETAB, MODTUNING.KENDOSTICK_TECH, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
 end
 
 local function balancesaber(inst)
@@ -10,29 +11,30 @@ local function balancesaber(inst)
 	end
 	
 	local saberstats =	{
-		health = MODTUNING.SABER_HEALTH,
-		hunger = MODTUNING.SABER_HUNGER,
-		sanity = MODTUNING.SABER_SANITY,
+		health = MODTUNING.HEALTH,
+		hunger = MODTUNING.HUNGER,
+		sanity = MODTUNING.SANITY,
 		
-		absorb = MODTUNING.SABER_ABSORPTION,
+		absorb = MODTUNING.ABSORB,
+		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
-		ignoresspoilage = MODTUNING.SABER_IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.SABER_STRONG_STOMACH,
-		hungerkillrate = MODTUNING.SABER_HUNGER_KILL_RATE,
-		hungerrate = MODTUNING.SABER_HUNGER_RATE,
+		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
+		strongstomach = MODTUNING.STRONG_STOMACH,
+		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerrate = MODTUNING.HUNGER_RATE,
 		
-		dapperness = MODTUNING.SABER_DAPPERNESS,
-		dapperness_mult = MODTUNING.SABER_DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.SABER_NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.SABER_NIGHT_DRAIN_MULT,
+		dapperness = MODTUNING.DAPPERNESS,
+		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
+		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
+		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
 		
-		damage = MODTUNING.SABER_DAMAGE,
+		damage = MODTUNING.DAMAGE,
 		
-		walkspeed = MODTUNING.SABER_WALK_SPEED,
-		runspeed = MODTUNING.SABER_RUN_SPEED,
+		walkspeed = MODTUNING.WALK_SPEED,
+		runspeed = MODTUNING.RUN_SPEED,
 		
-		winterinsulation = MODTUNING.SABER_WINTER_INSULATION,
-		summerinsulation = MODTUNING.SABER_SUMMER_INSULATION,
+		winterinsulation = MODTUNING.WINTER_INSULATION,
+		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}
 	
 	ModifyCharacter:ModifyStats(inst, saberstats)
@@ -47,8 +49,8 @@ local function balancekendostick(inst)
 	
 	local function updatedamage(inst)
 		if inst.components.finiteuses and inst.components.weapon then
-			local dmg = MODTUNING.SABER_KENDOSTICK_DAMAGE * (1 - inst.components.finiteuses:GetPercent())
-			dmg = Remap(dmg, 0, MODTUNING.SABER_KENDOSTICK_DAMAGE, MODTUNING.SABER_KENDOSTICK_DAMAGE, MODTUNING.SABER_KENDOSTICK_DAMAGE * MODTUNING.SABER_KENDOSTICK_DAMAGE_MODIFIER)
+			local dmg = MODTUNING.KENDOSTICK_DAMAGE * (1 - inst.components.finiteuses:GetPercent())
+			dmg = Remap(dmg, 0, MODTUNING.KENDOSTICK_DAMAGE, MODTUNING.KENDOSTICK_DAMAGE, MODTUNING.KENDOSTICK_DAMAGE * MODTUNING.KENDOSTICK_DAMAGE_MODIFIER)
 			inst.components.weapon:SetDamage(dmg)
 		end
 	end
@@ -82,8 +84,8 @@ local function balancekendostick(inst)
 	inst.components.weapon:SetOnAttack(updatedamage)
 	
 	inst:AddComponent("finiteuses")
-	inst.components.finiteuses:SetMaxUses(MODTUNING.SABER_KENDOSTICK_USES)
-	inst.components.finiteuses:SetUses(MODTUNING.SABER_KENDOSTICK_USES)
+	inst.components.finiteuses:SetMaxUses(MODTUNING.KENDOSTICK_USES)
+	inst.components.finiteuses:SetUses(MODTUNING.KENDOSTICK_USES)
 	inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	MakeHauntableLaunch(inst)
@@ -91,8 +93,8 @@ end
 
 if GetModConfigData("SABER_BALANCED") then
 	if not info.ignoreMCR then
-		if info.version ~= MODTUNING.SABER_SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported Version: " .. MODTUNING.SABER_SUPPORTED_VERSION)
+		if info.version ~= MODTUNING.SUPPORTED_VERSION then
+			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported Version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)
