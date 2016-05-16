@@ -3,9 +3,9 @@ ModifyCharacter = Class(function(self, inst)
 end)
 
 function ModifyCharacter:ModifyStats(inst, stats)
-	inst.components.health:SetMaxHealth(stats.health or inst.components.health.currenthealth)
-	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.current)
-	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.current)
+	inst.components.health:SetMaxHealth(stats.health or inst.components.health.maxhealth)
+	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.max)
+	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.max)
 	
 	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
 	inst.components.health:SetAbsorptionAmountFromPlayer(stats.playerabsorb or inst.components.health.playerabsorb)
