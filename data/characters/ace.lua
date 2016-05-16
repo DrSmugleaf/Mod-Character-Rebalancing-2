@@ -4,6 +4,9 @@ local info = KnownModIndex:LoadModInfo("workshop-388109833")
 local function addsimpostinit(inst)
 	ModRecipe:ChangeRecipe("acefire", MODTUNING.FIRE_INGREDIENTS, MODTUNING.FIRE_RECIPETAB, MODTUNING.FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
 	ModRecipe:ChangeRecipe("acehat", MODTUNING.HAT_INGREDIENTS, MODTUNING.HAT_RECIPETAB, MODTUNING.HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
+	
+	STRINGS.RECIPE_DESC.ACEFIRE = "Victims might catch on fire."
+	STRINGS.RECIPE_DESC.ACEHAT = "Not just a better Garland. Promise."
 end
 
 local function balanceace(inst)

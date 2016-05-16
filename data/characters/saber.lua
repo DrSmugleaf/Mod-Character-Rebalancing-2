@@ -2,7 +2,9 @@ local MODTUNING = MODTUNING.SABER
 local info = KnownModIndex:LoadModInfo("workshop-376244443")
 
 local function addsimpostinit(inst)
-	AddRecipe("kendostick", MODTUNING.KENDOSTICK_INGREDIENTS, MODTUNING.KENDOSTICK_RECIPETAB, MODTUNING.KENDOSTICK_TECH, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
+	ModRecipe:ChangeRecipe("kendostick", MODTUNING.KENDOSTICK_INGREDIENTS, MODTUNING.KENDOSTICK_RECIPETAB, MODTUNING.KENDOSTICK_TECH, nil, nil, nil, nil, "saber", "images/inventoryimages/kendostick.xml", "kendostick.tex")
+	
+	STRINGS.RECIPE_DESC.KENDOSTICK = "The better to smash your enemies with."
 end
 
 local function balancesaber(inst)

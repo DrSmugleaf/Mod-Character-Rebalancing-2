@@ -2,7 +2,9 @@ local MODTUNING = MODTUNING.LUFFY
 local info = KnownModIndex:LoadModInfo("workshop-380079744")
 
 local function addsimpostinit(inst)
-	AddRecipe("luffyhat", MODTUNING.HAT_INGREDIENTS, MODTUNING.HAT_RECIPETAB, MODTUNING.HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
+	ModRecipe:ChangeRecipe("luffyhat", MODTUNING.HAT_INGREDIENTS, MODTUNING.HAT_RECIPETAB, MODTUNING.HAT_TECH, nil, nil, nil, nil, "luffy", "images/inventoryimages/luffyhat.xml", "luffyhat.tex")
+	
+	STRINGS.RECIPE_DESC.LUFFYHAT = "Not just a better Garland. Promise."
 end
 
 local function balanceluffy(inst)
