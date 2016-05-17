@@ -30,7 +30,7 @@ local function balancerin(inst)
 		
 		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
 		strongstomach = MODTUNING.STRONG_STOMACH,
-		hungerkillrate = MODTUNING.HUNGER_KILL_RATE,
+		hungerhurtrate = MODTUNING.HUNGER_HURT_RATE,
 		hungerrate = MODTUNING.HUNGER_RATE,
 		
 		dapperness = MODTUNING.DAPPERNESS,
@@ -43,6 +43,10 @@ local function balancerin(inst)
 		walkspeed = MODTUNING.WALK_SPEED,
 		runspeed = MODTUNING.RUN_SPEED,
 		
+		maxtemp = MODTUNING.MAX_TEMP,
+		mintemp = MODTUNING.MIN_TEMP,
+		overheattemp = MODTUNING.OVERHEAT_TEMP,
+		temperaturehurtrate = MODTUNING.TEMPERATURE_HURT_RATE,
 		winterinsulation = MODTUNING.WINTER_INSULATION,
 		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}

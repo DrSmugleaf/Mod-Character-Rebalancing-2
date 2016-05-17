@@ -25,8 +25,12 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.locomotor.walkspeed = stats.walkspeed and TUNING.WILSON_WALK_SPEED * stats.walkspeed or inst.components.locomotor.walkspeed
 	inst.components.locomotor.runspeed = stats.runspeed and TUNING.WILSON_RUN_SPEED * stats.runspeed or inst.components.locomotor.runspeed
 	
-	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation or 0
-	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.summerinsulation or 0
+	inst.components.temperature.maxtemp = stats.maxtemp or inst.components.temperature.maxtemp
+	inst.components.temperature.mintemp = stats.mintemp or inst.components.temperature.mintemp
+	inst.components.temperature.overheattemp = stats.overheattemp or inst.components.temperature.overheattemp
+	inst.components.temperature.hurtrate = stats.temperaturehurtrate or inst.components.temperature.hurtrate
+	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation
+	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.summerinsulation
 end
 
 function ModifyCharacter:ModifyStatsWithLeveling(inst, stats)
