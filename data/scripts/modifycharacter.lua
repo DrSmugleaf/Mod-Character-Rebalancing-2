@@ -7,11 +7,13 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.max)
 	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.max)
 	
+	inst.components.health.fire_damage_scale = stats.firedamagescale or inst.components.health.fire_damage_scale
 	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
 	inst.components.health:SetAbsorptionAmountFromPlayer(stats.playerabsorb or inst.components.health.playerabsorb)
 	
 	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
 	inst.components.eater.ignoresspoilage = stats.ignoresspoilage or inst.components.eater.ignoresspoilage
+	inst.components.eater:SetDiet(stats.caneat or inst.components.eater.caneat, stats.preferseating or inst.components.eater.preferseating)
 	inst.components.hunger:SetKillRate(stats.hungerhurtrate or inst.components.hunger.hurtrate)
 	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
 	
@@ -19,8 +21,13 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.sanity.dapperness_mult = stats.dapperness_mult or inst.components.sanity.dapperness_mult
 	inst.components.sanity.neg_aura_mult = stats.neg_aura_mult or inst.components.sanity.neg_aura_mult
 	inst.components.sanity.night_drain_mult = stats.night_drain_mult or inst.components.sanity.night_drain_mult
+	inst.components.sanity.ghost_drain_mult = stats.ghost_drain_mult or inst.components.sanity.ghost_drain_mult
 	
 	inst.components.combat.damagemultiplier = stats.damage or inst.components.combat.damagemultiplier
+	inst.components.combat:SetRange(stats.attackrange or inst.components.combat.attackrange, stats.hitrange or inst.components.combat.hitrange)
+	inst.components.combat:SetAreaDamage(stats.areahitrange or inst.components.combat.areahitrange, stats.areahitdamagepercent or inst.components.combat.areahitdamagepercent)
+	inst.components.combat:SetDefaultDamage(stats.defaultdamage or inst.components.combat.defaultdamage)
+	inst.components.combat:SetAttackPeriod(stats.min_attack_period or inst.components.combat.min_attack_period)
 	
 	inst.components.locomotor.walkspeed = stats.walkspeed and TUNING.WILSON_WALK_SPEED * stats.walkspeed or inst.components.locomotor.walkspeed
 	inst.components.locomotor.runspeed = stats.runspeed and TUNING.WILSON_RUN_SPEED * stats.runspeed or inst.components.locomotor.runspeed

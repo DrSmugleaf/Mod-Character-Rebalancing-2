@@ -19,11 +19,14 @@ local function balanceace(inst)
 		hunger = MODTUNING.HUNGER,
 		sanity = MODTUNING.SANITY,
 		
+		firedamagescale = MODTUNING.FIRE_DAMAGE_SCALE,
 		absorb = MODTUNING.ABSORB,
 		playerabsorb = MODTUNING.PLAYER_ABSORB,
 		
 		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
 		strongstomach = MODTUNING.STRONG_STOMACH,
+		caneat = MODTUNING.CAN_EAT,
+		preferseating = MODTUNING.PREFERS_EATING,
 		hungerhurtrate = MODTUNING.HUNGER_HURT_RATE,
 		hungerrate = MODTUNING.HUNGER_RATE,
 		
@@ -31,8 +34,15 @@ local function balanceace(inst)
 		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
 		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
 		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
+		ghost_drain_mult = MODTUNING.GHOST_DRAIN_MULT,
 		
 		damage = MODTUNING.DAMAGE,
+		attackrange = MODTUNING.ATTACK_RANGE,
+		hitrange = MODTUNING.HIT_RANGE,
+		areahitrange = MODTUNING.AREA_HIT_RANGE,
+		areahitdamagepercent = MODTUNING.AREA_HIT_DAMAGE_PERCENT,
+		defaultdamage = MODTUNING.DEFAULT_DAMAGE,
+		minattackperiod = MODTUNING.MIN_ATTACK_PERIOD,
 		
 		walkspeed = MODTUNING.WALK_SPEED,
 		runspeed = MODTUNING.RUN_SPEED,
