@@ -57,7 +57,7 @@ function ModTune(overrides)
 			PLAYER_ABSORB = 0,
 			IGNORES_SPOILAGE = false,
 			STRONG_STOMACH = false,
-			HUNGER_KILL_RATE = 1,
+			HUNGER_HURT_RATE = 1,
 			HUNGER_RATE = 1,
 			DAPPERNESS = 0,
 			DAPPERNESS_MULT = 1,
