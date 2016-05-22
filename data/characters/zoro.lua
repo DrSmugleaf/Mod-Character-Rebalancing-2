@@ -65,14 +65,14 @@ local function deleteminimap(inst)
 end
 
 if GetModConfigData("ZORO_BALANCED") then
-	if not info.ignoreMCR then
+	if not info.ignoreMCR2 then
 		if info.version ~= MODTUNING.SUPPORTED_VERSION then
 			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)
 		AddPrefabPostInit("zoro", balancezoro)
-		if not minimapinfo.ignoreMCR and (KnownModIndex:IsModEnabled("workshop-345692228") or KnownModIndex:IsModTempEnabled("workshop-345692228")) then
+		if not minimapinfo.ignoreMCR2 and (KnownModIndex:IsModEnabled("workshop-345692228") or KnownModIndex:IsModTempEnabled("workshop-345692228")) then
 			AddClassPostConstruct("widgets/minimapwidget", deleteminimap)
 		end
 	else

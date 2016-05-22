@@ -97,7 +97,7 @@ local function balancesakura(inst)
 end
 
 if GetModConfigData("SAKURA_BALANCED") then
-	if not info.ignoreMCR then
+	if not info.ignoreMCR2 then
 		if info.version ~= MODTUNING.SUPPORTED_VERSION then
 			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
