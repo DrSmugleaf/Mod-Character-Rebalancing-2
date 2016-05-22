@@ -50,31 +50,54 @@ function ModTune(overrides)
 		ABIGAIL =
 		{
 			SUPPORTED_VERSION = "1.2.1",
+			
 			HEALTH = 150,
-			HUNGER = 100,
-			SANITY = 150,
 			ABSORB = 0,
 			PLAYER_ABSORB = 0,
+			FIRE_HURT_RATE = 1,
+			
+			HUNGER = 100,
+			CAN_EAT = { FOODGROUP.OMNI },
 			IGNORES_SPOILAGE = false,
-			STRONG_STOMACH = false,
 			HUNGER_HURT_RATE = 1,
 			HUNGER_RATE = 1,
-			DAPPERNESS = 0,
+			PREFERS_EATING = { FOODGROUP.OMNI },
+			STRONG_STOMACH = false,
+			
+			SANITY = 150,
 			DAPPERNESS_MULT = 1,
-			NEG_AURA_MULT = 1.25,
-			NIGHT_DRAIN_MULT = 1.25,
+			DAPPERNESS = 0,
+			GHOST_DRAIN_MULT = 1,
+			NEG_AURA_MULT = 1,
+			NIGHT_DRAIN_MULT = 1,
+			
 			DAMAGE = 1,
+			AREA_HIT_DAMAGE_PERCENT = nil,
+			AREA_HIT_RANGE = nil,
+			ATTACK_RANGE = 3,
+			DEFAULT_DAMAGE = 0,
+			HIT_RANGE = 3,
+			
 			WALK_SPEED = 1,
 			RUN_SPEED = 1,
-			WINTER_INSULATION = 0,
+			
+			MAX_TEMP = 90,
+			MIN_TEMP = -20,
+			OVERHEAT_TEMP = 70,
 			SUMMER_INSULATION = 0,
+			TEMPERATURE_HURT_RATE = 1,
+			WINTER_INSULATION = 0,
+			
 			INVENTORY = {"pumpkin_seeds", "pumpkin_seeds", "pumpkin_seeds"},
+			
 			QUARTZBAR_INGREDIENTS = {Ingredient("sdquartz", 10, "images/inventoryimages/sdquartz.xml")},
 			QUARTZBAR_RECIPETAB = sdabigailtab,
 			QUARTZBAR_TECH = TECH.MAGIC_THREE,
+			
 			IRIDIUMBAR_INGREDIENTS = {Ingredient("sdiridium", 5, "images/inventoryimages/sdiridium.xml")},
 			IRIDIUMBAR_RECIPETAB = sdabigailtab,
 			IRIDIUMBAR_TECH = TECH.MAGIC_THREE,
+			
 			GALAXYSWORD_INGREDIENTS = {Ingredient("sdquartzbar", 5, "images/inventoryimages/sdquartzbar.xml"), Ingredient("sdiridiumbar", 5, "images/inventoryimages/sdiridiumbar.xml"), Ingredient("purplegem", 1)},
 			GALAXYSWORD_RECIPETAB = sdabigailtab,
 			GALAXYSWORD_TECH = TECH.MAGIC_THREE,
@@ -85,10 +108,12 @@ function ModTune(overrides)
 			GALAXYSWORD_DAMAGE = 78,
 			GALAXYSWORD_DAPPERNESS = craziness_medlarge,
 			GALAXYSWORD_SPEED_MULT = TUNING.CANE_SPEED_MULT,
+			
 			PANFLUTE_INGREDIENTS = {Ingredient("cutreeds", 5), Ingredient("nightmarefuel", 2), Ingredient("boneshard", 1)},
 			PANFLUTE_RECIPETAB = sdabigailtab,
 			PANFLUTE_TECH = TECH.MAGIC_THREE,
 			PANFLUTE_USES = 5,
+			
 			QUARTZ_HEALTHVALUE = -5,
 			QUARTZ_HUNGERVALUE = 5,
 			QUARTZ_SANITYVALUE = 5,

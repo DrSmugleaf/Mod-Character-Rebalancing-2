@@ -3,40 +3,44 @@ ModifyCharacter = Class(function(self, inst)
 end)
 
 function ModifyCharacter:ModifyStats(inst, stats)
+	-- Health
 	inst.components.health:SetMaxHealth(stats.health or inst.components.health.maxhealth)
-	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.max)
-	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.max)
-	
-	inst.components.health.fire_damage_scale = stats.firedamagescale or inst.components.health.fire_damage_scale
 	inst.components.health:SetAbsorptionAmount(stats.absorb or inst.components.health.absorb)
 	inst.components.health:SetAbsorptionAmountFromPlayer(stats.playerabsorb or inst.components.health.playerabsorb)
+	inst.components.health.fire_damage_scale = stats.firedamagescale or inst.components.health.fire_damage_scale
 	
-	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
-	inst.components.eater.ignoresspoilage = stats.ignoresspoilage or inst.components.eater.ignoresspoilage
+	-- Hunger and Eater
+	inst.components.hunger:SetMax(stats.hunger or inst.components.hunger.max)
 	inst.components.eater:SetDiet(stats.caneat or inst.components.eater.caneat, stats.preferseating or inst.components.eater.preferseating)
+	inst.components.eater.ignoresspoilage = stats.ignoresspoilage or inst.components.eater.ignoresspoilage
 	inst.components.hunger:SetKillRate(stats.hungerhurtrate or inst.components.hunger.hurtrate)
 	inst.components.hunger:SetRate(stats.hungerrate and TUNING.WILSON_HUNGER_RATE * stats.hungerrate or inst.components.hunger.hungerrate)
+	inst.components.eater.strongstomach = stats.strongstomach or inst.components.eater.strongstomach
 	
-	inst.components.sanity.dapperness = stats.dapperness or inst.components.sanity.dapperness
+	-- Sanity
+	inst.components.sanity:SetMax(stats.sanity or inst.components.sanity.max)
 	inst.components.sanity.dapperness_mult = stats.dapperness_mult or inst.components.sanity.dapperness_mult
+	inst.components.sanity.dapperness = stats.dapperness or inst.components.sanity.dapperness
+	inst.components.sanity.ghost_drain_mult = stats.ghost_drain_mult or inst.components.sanity.ghost_drain_mult
 	inst.components.sanity.neg_aura_mult = stats.neg_aura_mult or inst.components.sanity.neg_aura_mult
 	inst.components.sanity.night_drain_mult = stats.night_drain_mult or inst.components.sanity.night_drain_mult
-	inst.components.sanity.ghost_drain_mult = stats.ghost_drain_mult or inst.components.sanity.ghost_drain_mult
 	
+	-- Combat
 	inst.components.combat.damagemultiplier = stats.damage or inst.components.combat.damagemultiplier
-	inst.components.combat:SetRange(stats.attackrange or inst.components.combat.attackrange, stats.hitrange or inst.components.combat.hitrange)
 	inst.components.combat:SetAreaDamage(stats.areahitrange or inst.components.combat.areahitrange, stats.areahitdamagepercent or inst.components.combat.areahitdamagepercent)
+	inst.components.combat:SetRange(stats.attackrange or inst.components.combat.attackrange, stats.hitrange or inst.components.combat.hitrange)
 	inst.components.combat:SetDefaultDamage(stats.defaultdamage or inst.components.combat.defaultdamage)
-	inst.components.combat:SetAttackPeriod(stats.min_attack_period or inst.components.combat.min_attack_period)
 	
+	-- Locomotor
 	inst.components.locomotor.walkspeed = stats.walkspeed and TUNING.WILSON_WALK_SPEED * stats.walkspeed or inst.components.locomotor.walkspeed
 	inst.components.locomotor.runspeed = stats.runspeed and TUNING.WILSON_RUN_SPEED * stats.runspeed or inst.components.locomotor.runspeed
 	
+	-- Temperature
 	inst.components.temperature.maxtemp = stats.maxtemp or inst.components.temperature.maxtemp
 	inst.components.temperature.mintemp = stats.mintemp or inst.components.temperature.mintemp
 	inst.components.temperature.overheattemp = stats.overheattemp or inst.components.temperature.overheattemp
-	inst.components.temperature.hurtrate = stats.temperaturehurtrate or inst.components.temperature.hurtrate
 	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation
+	inst.components.temperature.hurtrate = stats.temperaturehurtrate or inst.components.temperature.hurtrate
 	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.inherentsummerinsulation
 end
 
