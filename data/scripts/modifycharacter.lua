@@ -37,7 +37,7 @@ function ModifyCharacter:ModifyStats(inst, stats)
 	inst.components.temperature.overheattemp = stats.overheattemp or inst.components.temperature.overheattemp
 	inst.components.temperature.hurtrate = stats.temperaturehurtrate or inst.components.temperature.hurtrate
 	inst.components.temperature.inherentinsulation = stats.winterinsulation or inst.components.temperature.inherentinsulation
-	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.summerinsulation
+	inst.components.temperature.inherentsummerinsulation = stats.summerinsulation or inst.components.temperature.inherentsummerinsulation
 end
 
 function ModifyCharacter:ModifyStatsWithLeveling(inst, stats)
