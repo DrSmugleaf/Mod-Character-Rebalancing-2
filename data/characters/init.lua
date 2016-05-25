@@ -1,24 +1,26 @@
-if KnownModIndex:IsModEnabled("workshop-647062183") or KnownModIndex:IsModTempEnabled("workshop-647062183") then
-	Load "data/characters/abigail"
-end
-if KnownModIndex:IsModEnabled("workshop-388109833") or KnownModIndex:IsModTempEnabled("workshop-388109833") then
-	Load "data/characters/ace"
-end
-if KnownModIndex:IsModEnabled("workshop-380079744") or KnownModIndex:IsModTempEnabled("workshop-380079744") then
-	Load "data/characters/luffy"
-end
-if KnownModIndex:IsModEnabled("workshop-399803164") or KnownModIndex:IsModTempEnabled("workshop-399803164") then
-	Load "data/characters/rin"
-end
-if KnownModIndex:IsModEnabled("workshop-376244443") or KnownModIndex:IsModTempEnabled("workshop-376244443") then
-	Load "data/characters/saber"
-end
-if KnownModIndex:IsModEnabled("workshop-384048428") or KnownModIndex:IsModTempEnabled("workshop-384048428") then
-	Load "data/characters/sakura"
-end
-if KnownModIndex:IsModEnabled("workshop-399799824") or KnownModIndex:IsModTempEnabled("workshop-399799824") then
-	Load "data/characters/tamamo"
-end
-if KnownModIndex:IsModEnabled("workshop-409184357") or KnownModIndex:IsModTempEnabled("workshop-409184357") then
-	Load "data/characters/zoro"
+for k, v in pairs(MODTUNING) do
+	if	type(v) == "table" and 
+		v.MOD_NAME and
+		v.CHARACTER and
+		v.SUPPORTED_VERSION and
+		(KnownModIndex:IsModEnabled(string.lower(v.MOD_NAME)) or 
+		KnownModIndex:IsModTempEnabled(string.lower(v.MOD_NAME))) then
+		local info = KnownModIndex:LoadModInfo(string.lower(v.MOD_NAME))
+		if GetModConfigData(string.upper(v.CHARACTER) .. "_BALANCED") then
+			if not info.ignoreMCR2 then
+				if info.version ~= v.SUPPORTED_VERSION then
+					LogHelper:PrintWarn("Running unsupported version of " .. info.name " Version: " .. info.version .. " Supported version: " .. v.SUPPORTED_VERSION)
+				end
+				LogHelper:PrintInfo("Balancing" .. info.name .. " by " .. info.author .. " Version: " .. info.version)
+				AddPrefabPostInit(string.lower(v.CHARACTER), function(inst)
+					ModifyCharacter:ModifyStats(inst, v)
+				end)
+				Load("data/characters/" .. string.lower(v.CHARACTER))
+			else
+				LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
+			end
+		else
+			LogHelper:PrintInfo("Balancing " .. info.name .. " by " .. info.author .. " Version: " .. info.version .. " disabled by server")
+		end
+	end
 end

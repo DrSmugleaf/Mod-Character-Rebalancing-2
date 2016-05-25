@@ -35,7 +35,7 @@ configuration_options =	{
 		default = true,
 	},
 	{
-		name = "ABIGAIL_BALANCED",
+		name = "SDABIGAIL_BALANCED",
 		label = "Abigail(Stardew)",
 		hover = "By Silhh and Arcade. Latest supported version: 1.2.1",
 		options = 	{

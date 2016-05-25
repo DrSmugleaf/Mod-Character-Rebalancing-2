@@ -47,8 +47,10 @@ function ModTune(overrides)
 		CRAZINESS_LARGE = craziness_large,
 		CRAZINESS_HUGE = craziness_huge,
 		
-		ABIGAIL =
+		SDABIGAIL =
 		{
+			MOD_NAME = "WORKSHOP-647062183",
+			CHARACTER = "SDABIGAIL",
 			SUPPORTED_VERSION = "1.2.1",
 			
 			HEALTH = 150,
@@ -121,6 +123,8 @@ function ModTune(overrides)
 		
 		ACE =
 		{
+			MOD_NAME = "WORKSHOP-388109833",
+			CHARACTER = "ACE",
 			SUPPORTED_VERSION = "1.1.16",
 			HEALTH = 150,
 			HUNGER = 150,
@@ -141,6 +145,8 @@ function ModTune(overrides)
 		
 		LUFFY =
 		{
+			MOD_NAME = "WORKSHOP-380079744",
+			CHARACTER = "LUFFY",
 			SUPPORTED_VERSION = "1.2.1",
 			DEFAULT_DAMAGE = 50,
 			UNARMED_AREA_HIT_RANGE = 2.5,
@@ -153,6 +159,8 @@ function ModTune(overrides)
 		
 		RIN =
 		{
+			MOD_NAME = "WORKSHOP-399803164",
+			CHARACTER = "RIN",
 			SUPPORTED_VERSION = "1.3.5",
 			HEALTH = 125,
 			HUNGER = 125,
@@ -191,6 +199,8 @@ function ModTune(overrides)
 		
 		SABER =
 		{
+			MOD_NAME = "WORKSHOP-376244443",
+			CHARACTER = "SABER",
 			SUPPORTED_VERSION = "1.2.4",
 			HEALTH = 200,
 			HUNGER = 150,
@@ -211,6 +221,8 @@ function ModTune(overrides)
 		
 		SAKURA =
 		{
+			MOD_NAME = "WORKSHOP-384048428",
+			CHARACTER = "SAKURA",
 			SUPPORTED_VERSION = "1.3.9",
 			IGNORES_SPOILAGE = false,
 			SANITY_AURA_NOPVP = 0,
@@ -228,12 +240,16 @@ function ModTune(overrides)
 		
 		TAMAMO =
 		{
+			MOD_NAME = "WORKSHOP-399799824",
+			CHARACTER = "TAMAMO",
 			SUPPORTED_VERSION = "1.3.5",
 			IGNORES_SPOILAGE = false,
 		},
 		
 		ZORO =
 		{
+			MOD_NAME = "WORKSHOP-409184357",
+			CHARACTER = "ZORO",
 			SUPPORTED_VERSION = "1.1.19",
 		},
 	}

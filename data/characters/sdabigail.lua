@@ -1,4 +1,4 @@
-local MODTUNING = MODTUNING.ABIGAIL
+local MODTUNING = MODTUNING.SDABIGAIL
 local info = KnownModIndex:LoadModInfo("workshop-647062183")
 
 local function addsimpostinit(inst)
@@ -8,12 +8,12 @@ local function addsimpostinit(inst)
 	ModRecipe:ChangeRecipe("sdpan_flute", MODTUNING.PANFLUTE_INGREDIENTS, MODTUNING.PANFLUTE_RECIPETAB, MODTUNING.PANFLUTE_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/sdpan_flute.xml", "sdpan_flute.tex")
 end
 
-local function balanceabigail(inst)
+local function balancesdabigail(inst)
 	if not TheWorld.ismastersim then
 		return inst
 	end
 	
-	local abigailstats =	{
+	local sdabigailstats =	{
 		health = MODTUNING.HEALTH,
 		hunger = MODTUNING.HUNGER,
 		sanity = MODTUNING.SANITY,
@@ -54,7 +54,8 @@ local function balanceabigail(inst)
 		summerinsulation = MODTUNING.SUMMER_INSULATION,
 	}
 	
-	ModifyCharacter:ModifyStats(inst, abigailstats)
+	--ModifyCharacter:ModifyStats(inst, abigailstats)
+	--ModifyCharacter:Test(inst, "ABIGAIL")
 	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.INVENTORY)
 	
 	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
@@ -174,14 +175,14 @@ local function balanceiridiumbar(inst)
 	MakeHauntableLaunch(inst)
 end
 
-if GetModConfigData("ABIGAIL_BALANCED") then
+if GetModConfigData("SDABIGAIL_BALANCED") then
 	if not info.ignoreMCR2 then
 		if info.version ~= MODTUNING.SUPPORTED_VERSION then
 			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
 		end
 		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
 		AddSimPostInit(addsimpostinit)
-		AddPrefabPostInit("sdabigail", balanceabigail)
+		AddPrefabPostInit("sdabigail", balancesdabigail)
 		AddPrefabPostInit("galaxysword", balancegalaxysword)
 		AddPrefabPostInit("sdpan_flute", balancepanflute)
 		AddPrefabPostInit("sdquartz", balancequartz)
