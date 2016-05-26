@@ -14,49 +14,6 @@ local function balanceace(inst)
 		return inst
 	end
 	
-	local acestats =	{
-		health = MODTUNING.HEALTH,
-		hunger = MODTUNING.HUNGER,
-		sanity = MODTUNING.SANITY,
-		
-		firedamagescale = MODTUNING.FIRE_DAMAGE_SCALE,
-		absorb = MODTUNING.ABSORB,
-		playerabsorb = MODTUNING.PLAYER_ABSORB,
-		
-		ignoresspoilage = MODTUNING.IGNORES_SPOILAGE,
-		strongstomach = MODTUNING.STRONG_STOMACH,
-		caneat = MODTUNING.CAN_EAT,
-		preferseating = MODTUNING.PREFERS_EATING,
-		hungerhurtrate = MODTUNING.HUNGER_HURT_RATE,
-		hungerrate = MODTUNING.HUNGER_RATE,
-		
-		dapperness = MODTUNING.DAPPERNESS,
-		dapperness_mult = MODTUNING.DAPPERNESS_MULT,
-		neg_aura_mult = MODTUNING.NEG_AURA_MULT,
-		night_drain_mult = MODTUNING.NIGHT_DRAIN_MULT,
-		ghost_drain_mult = MODTUNING.GHOST_DRAIN_MULT,
-		
-		damage = MODTUNING.DAMAGE,
-		attackrange = MODTUNING.ATTACK_RANGE,
-		hitrange = MODTUNING.HIT_RANGE,
-		areahitrange = MODTUNING.AREA_HIT_RANGE,
-		areahitdamagepercent = MODTUNING.AREA_HIT_DAMAGE_PERCENT,
-		defaultdamage = MODTUNING.DEFAULT_DAMAGE,
-		minattackperiod = MODTUNING.MIN_ATTACK_PERIOD,
-		
-		walkspeed = MODTUNING.WALK_SPEED,
-		runspeed = MODTUNING.RUN_SPEED,
-		
-		maxtemp = MODTUNING.MAX_TEMP,
-		mintemp = MODTUNING.MIN_TEMP,
-		overheattemp = MODTUNING.OVERHEAT_TEMP,
-		temperaturehurtrate = MODTUNING.TEMPERATURE_HURT_RATE,
-		winterinsulation = MODTUNING.WINTER_INSULATION,
-		summerinsulation = MODTUNING.SUMMER_INSULATION,
-	}
-	
-	ModifyCharacter:ModifyStats(inst, acestats)
-	
 	inst:AddTag("ace")
 	
 	inst.components.combat.onhitotherfn = (function(attacker, inst, damage, stimuli)
@@ -189,19 +146,7 @@ local function balanceacehat(inst)
 	MakeHauntableLaunch(inst)
 end
 
-if GetModConfigData("ACE_BALANCED") then
-	if not info.ignoreMCR2 then
-		if info.version ~= MODTUNING.SUPPORTED_VERSION then
-			LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. MODTUNING.SUPPORTED_VERSION)
-		end
-		LogHelper:PrintInfo("Balancing " .. info.name ..  " by " .. info.author .. " Version: " .. info.version)
-		AddSimPostInit(addsimpostinit)
-		AddPrefabPostInit("ace", balanceace)
-		AddPrefabPostInit("acefire", balanceacefire)
-		AddPrefabPostInit("acehat", balanceacehat)
-	else
-		LogHelper:PrintInfo("Balancing " .. info.name .. " Version: " .. info.version .. " disabled by " .. info.author)
-	end
-else
-	LogHelper:PrintInfo("Balancing " .. info.name .. " by " .. info.author .. " Version: " .. info.version .. " disabled by server")
-end
+AddSimPostInit(addsimpostinit)
+AddPrefabPostInit("ace", balanceace)
+AddPrefabPostInit("acefire", balanceacefire)
+AddPrefabPostInit("acehat", balanceacehat)
