@@ -3,6 +3,9 @@ ModRecipe = Class(function(self, inst)
 end)
 
 function ModRecipe:ChangeRecipe(name, ingredients, tab, level, placer, min_spacing, nounlock, numtogive, builder_tag, atlas, image)
+	
+	name = string.lower(name)
+	
 	if not AllRecipes[name] then
 		return AddRecipe(name, ingredients, tab, level, placer, min_spacing, nounlock, numtogive, builder_tag, atlas, image)
 	end
