@@ -27,6 +27,11 @@ for k, v in pairs(MODTUNING) do
 				
 				for k, v in pairs(v) do
 					if type(v) == "table" and v.ITEM then
+						if v.INGREDIENTS then
+							AddSimPostInit(function(inst)
+								ModRecipe:ChangeRecipe(v.ITEM, v.INGREDIENTS, v.TAB, v.TECH, v.PLACER, v.MIN_SPACING, v.NOUNLOCK, v.NUMTOGIVE, v.TAG, v.ATLAS, v.IMAGE)
+							end)
+						end
 						AddPrefabPostInit(string.lower(v.ITEM), function(inst)
 							ModifyItem:ModifyStats(inst, v)
 						end)
