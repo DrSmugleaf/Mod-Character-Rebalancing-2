@@ -13,8 +13,6 @@ local function balancesdabigail(inst)
 		return inst
 	end
 	
-	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.INVENTORY)
-	
 	RemoveEvent:RemoveListener(inst, "oneat", "sdabigail")
 	
 	inst:AddTag("sdabigail")

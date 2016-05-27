@@ -20,8 +20,6 @@ local function balancerin(inst)
 		return inst
 	end
 	
-	ModifyCharacter:ChangeStartingInventory(inst, MODTUNING.INVENTORY)
-	
 	inst:RemoveTag("ancient_builder")
 	inst:RemoveTag("bookbuilder")
 	inst:RemoveTag("reader")

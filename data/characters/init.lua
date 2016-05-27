@@ -9,11 +9,14 @@ for k, v in pairs(MODTUNING) do
 		if GetModConfigData(string.upper(v.CHARACTER) .. "_BALANCED") then
 			if not info.ignoreMCR2 then
 				if info.version ~= v.SUPPORTED_VERSION then
-					LogHelper:PrintWarn("Running unsupported version of " .. info.name " Version: " .. info.version .. " Supported version: " .. v.SUPPORTED_VERSION)
+					LogHelper:PrintWarn("Running unsupported version of " .. info.name .. " Version: " .. info.version .. " Supported version: " .. v.SUPPORTED_VERSION)
 				end
-				LogHelper:PrintInfo("Balancing" .. info.name .. " by " .. info.author .. " Version: " .. info.version)
+				LogHelper:PrintInfo("Balancing " .. info.name .. " by " .. info.author .. " Version: " .. info.version)
 				AddPrefabPostInit(string.lower(v.CHARACTER), function(inst)
 					ModifyCharacter:ModifyStats(inst, v)
+					if v.INVENTORY then
+						ModifyCharacter:ChangeStartingInventory(inst, v.INVENTORY)
+					end
 				end)
 				Load("data/characters/" .. string.lower(v.CHARACTER))
 			else
