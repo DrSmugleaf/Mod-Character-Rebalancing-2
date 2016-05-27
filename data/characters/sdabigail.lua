@@ -4,7 +4,7 @@ local info = KnownModIndex:LoadModInfo("workshop-647062183")
 local function addsimpostinit(inst)
 	ModRecipe:ChangeRecipe("sdquartzbar", MODTUNING.QUARTZBAR_INGREDIENTS, nil, MODTUNING.QUARTZBAR_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/sdquartzbar.xml", "sdquartzbar.tex")
 	ModRecipe:ChangeRecipe("sdiridiumbar", MODTUNING.IRIDIUMBAR_INGREDIENTS, nil, MODTUNING.IRIDIUMBAR_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/sdiridiumbar.xml", "sdiridiumbar.tex")
-	ModRecipe:ChangeRecipe("galaxysword", MODTUNING.GALAXYSWORD_INGREDIENTS, MODTUNING.GALAXYSWORD_RECIPETAB, MODTUNING.GALAXYSWORD_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/galaxysword.xml", "galaxysword.tex")
+	--ModRecipe:ChangeRecipe("galaxysword", MODTUNING.GALAXYSWORD_INGREDIENTS, MODTUNING.GALAXYSWORD_RECIPETAB, MODTUNING.GALAXYSWORD_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/galaxysword.xml", "galaxysword.tex")
 	ModRecipe:ChangeRecipe("sdpan_flute", MODTUNING.PANFLUTE_INGREDIENTS, MODTUNING.PANFLUTE_RECIPETAB, MODTUNING.PANFLUTE_TECH, nil, nil, nil, nil, "sdabigail", "images/inventoryimages/sdpan_flute.xml", "sdpan_flute.tex")
 end
 
@@ -132,7 +132,7 @@ end
 
 AddSimPostInit(addsimpostinit)
 AddPrefabPostInit("sdabigail", balancesdabigail)
-AddPrefabPostInit("galaxysword", balancegalaxysword)
+--AddPrefabPostInit("galaxysword", balancegalaxysword)
 AddPrefabPostInit("sdpan_flute", balancepanflute)
 AddPrefabPostInit("sdquartz", balancequartz)
 AddPrefabPostInit("sdiridium", balanceiridium)
