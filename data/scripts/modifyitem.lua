@@ -7,9 +7,19 @@ function ModifyItem:ModifyStats(inst, stats)
 		return inst
 	end
 	
-	for k, v in pairs(stats.COMPONENTS) do
-		if not inst.components[v] then
-			inst:AddComponent(v)
+	if stats.COMPONENTS ~= nil then
+		for k, v in pairs(stats.COMPONENTS) do
+			if not inst.components[v] then
+				inst:AddComponent(v)
+			end
+		end
+	end
+	
+	if stats.REMOVE_COMPONENTS ~= nil then
+		for k, v in pairs(stats.REMOVE_COMPONENTS) do
+			if inst.components[v] then
+				inst:RemoveComponent(v)
+			end
 		end
 	end
 	
@@ -27,7 +37,7 @@ function ModifyItem:ModifyStats(inst, stats)
 	if inst.components.finiteuses ~= nil then
 		inst.components.finiteuses:SetMaxUses(stats.USES or inst.components.finiteuses.total)
 		inst.components.finiteuses:SetUses(stats.USES or inst.components.finiteuses.current)
-		inst.components.finiteuses:SetOnFinished(stats.ON_FINISHED or inst.components.finiteuses.onfinished)
+		inst.components.finiteuses:SetOnFinished(stats.ON_FINISHED or inst.components.finiteuses.onfinished or inst.Remove)
 	end
 	
 	if inst.components.tradable ~= nil then

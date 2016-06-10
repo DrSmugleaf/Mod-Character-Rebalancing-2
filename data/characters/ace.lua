@@ -2,11 +2,10 @@ local MODTUNING = MODTUNING.ACE
 local info = KnownModIndex:LoadModInfo("workshop-388109833")
 
 local function addsimpostinit(inst)
-	ModRecipe:ChangeRecipe("acefire", MODTUNING.FIRE_INGREDIENTS, MODTUNING.FIRE_RECIPETAB, MODTUNING.FIRE_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acefire.xml", "acefire.tex")
 	ModRecipe:ChangeRecipe("acehat", MODTUNING.HAT_INGREDIENTS, MODTUNING.HAT_RECIPETAB, MODTUNING.HAT_TECH, nil, nil, nil, nil, "ace", "images/inventoryimages/acehat.xml", "acehat.tex")
 	
-	STRINGS.RECIPE_DESC.ACEFIRE = "Victims might catch on fire."
-	STRINGS.RECIPE_DESC.ACEHAT = "Not just a better Garland. Promise."
+	--STRINGS.RECIPE_DESC.ACEFIRE = "Victims might catch on fire."
+	--STRINGS.RECIPE_DESC.ACEHAT = "Not just a better Garland. Promise."
 end
 
 local function balanceace(inst)
@@ -41,7 +40,7 @@ local function balanceacefire(inst)
 		end
 		
 		if attacker.components ~= nil and attacker.components.sanity ~= nil then
-			attacker.components.sanity:DoDelta(MODTUNING.FIRE_PENALTY_SANITY_ONATTACK)
+			attacker.components.sanity:DoDelta(MODTUNING.ACEFIRE.PENALTY_SANITY_ONATTACK)
 		end
 	end
 	
@@ -101,15 +100,15 @@ local function balanceacefire(inst)
 	inst:AddTag("lighter")
 	inst:AddTag("shadow")
 	
-	inst.components.weapon:SetDamage(MODTUNING.FIRE_DAMAGE)
+	--inst.components.weapon:SetDamage(MODTUNING.FIRE_DAMAGE)
 	inst.components.weapon:SetOnAttack(onattack)
 	
 	inst:AddComponent("lighter")
 	
-	inst:AddComponent("finiteuses")
-	inst.components.finiteuses:SetMaxUses(MODTUNING.FIRE_USES)
-	inst.components.finiteuses:SetUses(MODTUNING.FIRE_USES)
-	inst.components.finiteuses:SetOnFinished(inst.Remove)
+	--inst:AddComponent("finiteuses")
+	--inst.components.finiteuses:SetMaxUses(MODTUNING.FIRE_USES)
+	--inst.components.finiteuses:SetUses(MODTUNING.FIRE_USES)
+	--inst.components.finiteuses:SetOnFinished(inst.Remove)
 	
 	inst.components.inventoryitem.keepondeath = false
 	
@@ -136,7 +135,7 @@ local function balanceacehat(inst)
 	
 	inst:AddComponent("fueled")
 	inst.components.fueled.fueltype = FUELTYPE.USAGE
-	inst.components.fueled:InitializeFuelLevel(MODTUNING.HAT_PERISHTIME)
+	inst.components.fueled:InitializeFuelLevel(MODTUNING.ACEHAT.PERISHTIME)
 	inst.components.fueled:SetDepletedFn(inst.Remove)
 	
 	inst:RemoveComponent("tradable")

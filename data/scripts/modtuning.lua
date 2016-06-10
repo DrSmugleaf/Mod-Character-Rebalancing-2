@@ -49,8 +49,8 @@ function ModTune(overrides)
 		
 		SDABIGAIL =
 		{
-			MOD_NAME = "WORKSHOP-647062183",
-			CHARACTER = "SDABIGAIL",
+			MOD_NAME = "workshop-647062183",
+			CHARACTER = "sdabigail",
 			SUPPORTED_VERSION = "1.2.1",
 			
 			HEALTH = 150,
@@ -59,11 +59,11 @@ function ModTune(overrides)
 			FIRE_HURT_RATE = 1,
 			
 			HUNGER = 100,
-			CAN_EAT = { FOODGROUP.OMNI },
+			CAN_EAT = {FOODGROUP.OMNI},
 			IGNORES_SPOILAGE = false,
 			HUNGER_HURT_RATE = 1,
 			HUNGER_RATE = 1,
-			PREFERS_EATING = { FOODGROUP.OMNI },
+			PREFERS_EATING = {FOODGROUP.OMNI},
 			STRONG_STOMACH = false,
 			
 			SANITY = 150,
@@ -92,21 +92,14 @@ function ModTune(overrides)
 			
 			INVENTORY = {"pumpkin_seeds", "pumpkin_seeds", "pumpkin_seeds"},
 			
-			QUARTZBAR_INGREDIENTS = {Ingredient("sdquartz", 10, "images/inventoryimages/sdquartz.xml")},
-			QUARTZBAR_RECIPETAB = sdabigailtab,
-			QUARTZBAR_TECH = TECH.MAGIC_THREE,
-			
-			IRIDIUMBAR_INGREDIENTS = {Ingredient("sdiridium", 5, "images/inventoryimages/sdiridium.xml")},
-			IRIDIUMBAR_RECIPETAB = sdabigailtab,
-			IRIDIUMBAR_TECH = TECH.MAGIC_THREE,
-			
 			GALAXYSWORD =
 			{
-				ITEM = "GALAXYSWORD",
+				ITEM = "galaxysword",
 				COMPONENTS = {"finiteuses"},
 				INGREDIENTS = {Ingredient("sdquartzbar", 5, "images/inventoryimages/sdquartzbar.xml"), Ingredient("sdiridiumbar", 5, "images/inventoryimages/sdiridiumbar.xml"), Ingredient("purplegem", 1)},
-				RECIPETAB = sdabigailtab,
+				TAB = sdabigailtab,
 				TECH = TECH.MAGIC_THREE,
+				BUILDER_TAG = "sdabigail",
 				PENALTY_SANITY_ONEQUIP = -5,
 				PENALTY_SANITY_ONUNEQUIP = -5,
 				PENALTY_SANITY_ONATTACK = -2,
@@ -116,42 +109,85 @@ function ModTune(overrides)
 				SPEED_MULT = TUNING.CANE_SPEED_MULT,
 			},
 			
-			PANFLUTE_INGREDIENTS = {Ingredient("cutreeds", 5), Ingredient("nightmarefuel", 2), Ingredient("boneshard", 1)},
-			PANFLUTE_RECIPETAB = sdabigailtab,
-			PANFLUTE_TECH = TECH.MAGIC_THREE,
-			PANFLUTE_USES = 5,
+			SDIRIDIUMBAR =
+			{
+				ITEM = "sdiridiumbar",
+				INGREDIENTS = {Ingredient("sdiridium", 5, "images/inventoryimages/sdiridium.xml")},
+				RECIPE_TAB = sdabigailtab,
+				TECH = TECH.MAGIC_THREE,
+				BUILDER_TAG = "sdabigail",
+			},
 			
-			QUARTZ_HEALTHVALUE = -5,
-			QUARTZ_HUNGERVALUE = 5,
-			QUARTZ_SANITYVALUE = 5,
+			SDPANFLUTE =
+			{
+				ITEM = "sdpan_flute",
+				INGREDIENTS = {Ingredient("cutreeds", 5), Ingredient("nightmarefuel", 2), Ingredient("boneshard", 1)},
+				TAB = sdabigailtab,
+				TECH = TECH.MAGIC_THREE,
+				BUILDER_TAG = "sdabigail",
+				USES = 5,
+			},
+			
+			SDQUARTZ =
+			{
+				ITEM = "sdquartz",
+				REMOVE_COMPONENTS = {"tradable"},
+				HEALTHVALUE = -5,
+				HUNGERVALUE = 5,
+				SANITYVALUE = 5,
+			},
+			
+			SDQUARTZBAR =
+			{
+				ITEM = "sdquartzbar",
+				INGREDIENTS = {Ingredient("sdquartz", 10, "images/inventoryimages/sdquartz.xml")},
+				TAB = sdabigailtab,
+				TECH = TECH.MAGIC_THREE,
+				BUILDER_TAG = "sdabigail",
+			},
 		},
 		
 		ACE =
 		{
-			MOD_NAME = "WORKSHOP-388109833",
-			CHARACTER = "ACE",
+			MOD_NAME = "workshop-388109833",
+			CHARACTER = "ace",
 			SUPPORTED_VERSION = "1.1.16",
 			HEALTH = 150,
 			HUNGER = 150,
 			SANITY = 100,
 			DAMAGE = 1,
 			MIN_TEMP = TUNING.MIN_ENTITY_TEMP,
-			FIRE_INGREDIENTS = {Ingredient("nightmarefuel", 1), Ingredient("redgem", 1)},
-			FIRE_RECIPETAB = RECIPETABS.MAGIC,
-			FIRE_TECH = TECH.MAGIC_THREE,
-			FIRE_PENALTY_SANITY_ONATTACK = -2,
-			FIRE_DAMAGE = 20,
-			FIRE_USES = 15,
-			HAT_INGREDIENTS = {Ingredient("cutgrass", 12), Ingredient("rope", 1)},
-			HAT_RECIPETAB = RECIPETABS.DRESS,
-			HAT_TECH = TECH.SCIENCE_ONE,
-			HAT_PERISHTIME = total_day_time * 5,
+			
+			ACEFIRE = {
+				ITEM = "acefire",
+				COMPONENTS = {"finiteuses"},
+				INGREDIENTS = {Ingredient("nightmarefuel", 1), Ingredient("redgem", 1)},
+				TAB = RECIPETABS.MAGIC,
+				TECH = TECH.MAGIC_THREE,
+				BUILDER_TAG = "ace",
+				DAMAGE = 20,
+				USES = 15,
+				RECIPE_DESC = "Victims might catch on fire.",
+				
+				PENALTY_SANITY_ONATTACK = -2,
+			},
+			
+			ACEHAT = {
+				ITEM = "acehat",
+				INGREDIENTS = {Ingredient("cutgrass", 12), Ingredient("rope", 1)},
+				TAB = RECIPETABS.DRESS,
+				TECH = TECH.SCIENCE_ONE,
+				RECIPE_DESC = "Not just a better Garland. Promise.",
+				
+				PERISHTIME = total_day_time * 5,
+			},
+			
 		},
 		
 		LUFFY =
 		{
-			MOD_NAME = "WORKSHOP-380079744",
-			CHARACTER = "LUFFY",
+			MOD_NAME = "workshop-380079744",
+			CHARACTER = "luffy",
 			SUPPORTED_VERSION = "1.2.1",
 			DEFAULT_DAMAGE = 50,
 			UNARMED_AREA_HIT_RANGE = 2.5,
@@ -164,8 +200,8 @@ function ModTune(overrides)
 		
 		RIN =
 		{
-			MOD_NAME = "WORKSHOP-399803164",
-			CHARACTER = "RIN",
+			MOD_NAME = "workshop-399803164",
+			CHARACTER = "rin",
 			SUPPORTED_VERSION = "1.3.5",
 			HEALTH = 125,
 			HUNGER = 125,
@@ -204,8 +240,8 @@ function ModTune(overrides)
 		
 		SABER =
 		{
-			MOD_NAME = "WORKSHOP-376244443",
-			CHARACTER = "SABER",
+			MOD_NAME = "workshop-376244443",
+			CHARACTER = "saber",
 			SUPPORTED_VERSION = "1.2.4",
 			HEALTH = 200,
 			HUNGER = 150,
@@ -226,8 +262,8 @@ function ModTune(overrides)
 		
 		SAKURA =
 		{
-			MOD_NAME = "WORKSHOP-384048428",
-			CHARACTER = "SAKURA",
+			MOD_NAME = "workshop-384048428",
+			CHARACTER = "sakura",
 			SUPPORTED_VERSION = "1.3.9",
 			IGNORES_SPOILAGE = false,
 			SANITY_AURA_NOPVP = 0,
@@ -245,16 +281,16 @@ function ModTune(overrides)
 		
 		TAMAMO =
 		{
-			MOD_NAME = "WORKSHOP-399799824",
-			CHARACTER = "TAMAMO",
+			MOD_NAME = "workshop-399799824",
+			CHARACTER = "tamamo",
 			SUPPORTED_VERSION = "1.3.5",
 			IGNORES_SPOILAGE = false,
 		},
 		
 		ZORO =
 		{
-			MOD_NAME = "WORKSHOP-409184357",
-			CHARACTER = "ZORO",
+			MOD_NAME = "workshop-409184357",
+			CHARACTER = "zoro",
 			SUPPORTED_VERSION = "1.1.19",
 		},
 	}

@@ -2,10 +2,7 @@ ModRecipe = Class(function(self, inst)
 	self.inst = inst
 end)
 
-function ModRecipe:ChangeRecipe(name, ingredients, tab, level, placer, min_spacing, nounlock, numtogive, builder_tag, atlas, image)
-	
-	name = string.lower(name)
-	
+function ModRecipe:ChangeRecipe(name, ingredients, tab, level, placer, min_spacing, nounlock, numtogive, builder_tag, atlas, image, desc)
 	if not AllRecipes[name] then
 		return AddRecipe(name, ingredients, tab, level, placer, min_spacing, nounlock, numtogive, builder_tag, atlas, image)
 	end
@@ -26,6 +23,7 @@ function ModRecipe:ChangeRecipe(name, ingredients, tab, level, placer, min_spaci
 	
 	AllRecipes[name].builder_tag = builder_tag or AllRecipes[name].builder_tag
 	
+	STRINGS.RECIPE_DESC[name] = desc or STRINGS.RECIPE_DESC[name] or nil
 end
 
 return ModRecipe
